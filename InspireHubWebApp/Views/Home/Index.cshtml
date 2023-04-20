@@ -4,7 +4,7 @@
     ViewData["Title"] = "Home";
 }
 
-<section class="top-section d-flex flex-column align-items-center">
+<section id="top-section" class="top-section d-flex flex-column align-items-center">
     <div class="main-title">
         <h1>Learn what you love!</h1>
         <p>
@@ -20,7 +20,7 @@
         />
     </div>
     </section>
-      <section class="training-section d-flex flex-column align-items-center">
+      <section id="training-section" class="training-section d-flex flex-column align-items-center">
         <div class="main-title">
           <h1>Trajnimet</h1>
           <p>
@@ -81,14 +81,14 @@
                 <div class="button-wrapper">
                   <button
                     class="btn btn-primary d-inline d-md-none"
-                    data-bs-target="#exampleModalToggle"
+                    data-bs-target="#modal1"
                     data-bs-toggle="modal"
                   >
                     Apliko
                   </button>
                   <button
                     class="btn btn-secondary d-inline d-md-none"
-                    data-bs-target="#exampleModalToggle2"
+                    data-bs-target="#modal1"
                     data-bs-toggle="modal"
                   >
                     Më Shumë
@@ -107,7 +107,7 @@
               <div class="button-wrapper">
                 <div
                   class="modal fade modal-xl"
-                  id="exampleModalToggle"
+                  id="modal1"
                   aria-hidden="true"
                   aria-labelledby="exampleModalToggleLabel"
                   tabindex="-1"
@@ -143,7 +143,7 @@
                           <p>Application Deadline: April 23rd</p>
                         </div>
                       </div>
-                      <div class="modal-body">
+                      <div class="modal-body d-none" id="modal-body-1">
                         <div class="modal-content-wrapper">
                           <div class="modal-content-header">
                             <h3>Course Details</h3>
@@ -272,6 +272,7 @@
                                   class="form-control"
                                   style="height: 52px"
                                 />
+                                <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
                               </div>
                               <div class="col-md-6">
                                 <label
@@ -285,6 +286,7 @@
                                   asp-for="@Model.LastName"
                                   style="height: 52px"
                                 />
+                                <span asp-validation-for="@Model.LastName" class="text-danger"></span>
                               </div>
                             </div>
                             <div class="row">
@@ -300,6 +302,7 @@
                                   asp-for="@Model.Email"
                                   style="height: 52px"
                                 />
+                                <span asp-validation-for="@Model.Email" class="text-danger"></span>
                               </div>
                               <div class="col-md-6">
                                 <label
@@ -313,6 +316,7 @@
                                   asp-for="@Model.Phone"
                                   style="height: 52px"
                                 />
+                                <span asp-validation-for="@Model.Phone" class="text-danger"></span>
                               </div>
                             </div>
                             <button type="submit" class="btn btn-primary">
@@ -324,8 +328,8 @@
                       <div class="modal-footer-button">
                         <button
                           class="btn btn-secondary"
-                          data-bs-target="#exampleModalToggle2"
-                          data-bs-toggle="modal"
+                          type="button"
+                          onclick=" showContent('modal-body-1')"
                         >
                           Me Shume
                         </button>
@@ -333,55 +337,17 @@
                     </div>
                   </div>
                 </div>
-                <div
-                  class="modal fade"
-                  id="exampleModalToggle2"
-                  aria-hidden="true"
-                  aria-labelledby="exampleModalToggleLabel2"
-                  tabindex="-1"
-                >
-                  <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h1
-                          class="modal-title fs-5"
-                          id="exampleModalToggleLabel2"
-                        >
-                          Modal 2
-                        </h1>
-                        <button
-                          type="button"
-                          class="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
-                      </div>
-                      <div class="modal-body">
-                        Hide this modal and show the first with the button
-                        below.
-                      </div>
-                      <div class="modal-footer">
-                        <button
-                          class="btn btn-primary"
-                          data-bs-target="#exampleModalToggle"
-                          data-bs-toggle="modal"
-                        >
-                          Back to first
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                
                 <button
                   class="btn btn-primary d-none d-md-inline"
-                  data-bs-target="#exampleModalToggle"
+                  data-bs-target="#modal1"
                   data-bs-toggle="modal"
                 >
                   Apliko
                 </button>
                 <button
                   class="btn btn-secondary d-none d-md-inline"
-                  data-bs-target="#exampleModalToggle2"
+                  data-bs-target="#modal1"
                   data-bs-toggle="modal"
                 >
                   Më Shumë
@@ -389,17 +355,18 @@
               </div>
             </div>
           </div>
+          @*Card 2*@
           <div class="training-card col-12 col-md-10 col-sm-12 row">
             <div class="avatar-info col-12 col-md-5 p-0">
               <img
-                src="~/assets/images/avatar1.png"
+                src="~/assets/images/avatar2.png"
                 class="avatar-image"
                 alt="avatarImage"
               />
               <div class="avatar-detail">
                 <span>Instruktor</span>
-                <h4>Abdullah Hasani</h4>
-                <p>Co-Founder & Creative Director at Honedon</p>
+                <h4>Urim Karakashi</h4>
+                <p>Co-Founder & UI/ UX Designer at Honedon</p>
                 <ul>
                   <li>
                     <a href="#">
@@ -439,10 +406,26 @@
                     </a>
                   </li>
                 </ul>
+                <div class="button-wrapper">
+                  <button
+                    class="btn btn-primary d-inline d-md-none"
+                    data-bs-target="#modal2"
+                    data-bs-toggle="modal"
+                  >
+                    Apliko
+                  </button>
+                  <button
+                    class="btn btn-secondary d-inline d-md-none"
+                    data-bs-target="#modal2"
+                    data-bs-toggle="modal"
+                  >
+                    Më Shumë
+                  </button>
+                </div>
               </div>
             </div>
             <div class="training-detail col-12 col-md-7">
-              <h2>Graphic Design <br />Training</h2>
+              <h2>UI/UX Design <br />Training</h2>
               <p class="first-paragraph">24 Prill 2023 — 24 Maj 2023</p>
               <ul>
                 <li>54 hours / 3 days * 3 hours per day / 6 weeks.</li>
@@ -452,7 +435,7 @@
               <div class="button-wrapper">
                 <div
                   class="modal fade modal-xl"
-                  id="exampleModalToggle"
+                  id="modal2"
                   aria-hidden="true"
                   aria-labelledby="exampleModalToggleLabel"
                   tabindex="-1"
@@ -469,7 +452,7 @@
                         class="modal-header d-flex flex-column align-items-start"
                       >
                         <h1 class="modal-title" id="exampleModalToggleLabel">
-                          Graphic Design <br />
+                          UI/UX Design <br />
                           Training
                         </h1>
                         <p class="first-paragraph">
@@ -488,25 +471,136 @@
                           <p>Application Deadline: April 23rd</p>
                         </div>
                       </div>
-                      <div class="modal-body d-none">
-                        Show a second modal and hide this one with the button
-                        below.
+                      <div class="modal-body d-none" id="modal-body-2">
+                        <div class="modal-content-wrapper">
+                          <div class="modal-content-header">
+                            <h3>Course Details</h3>
+                          </div>
+                          <div class="modal-box">
+                            <h3>Schedule</h3>
+                            <div class="box-content">
+                              <ul>
+                                <li>
+                                  54 hours / 3 days * 3 hours per day / 6 weeks.
+                                </li>
+                                <li>
+                                  Monday Wednesday and Friday from 09:00 - 12:00
+                                </li>
+                                <li>This course will start on October 14.</li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="modal-box">
+                            <h3>Schedule</h3>
+                            <div class="box-content">
+                              <ul>
+                                <li>
+                                  54 hours / 3 days * 3 hours per day / 6 weeks.
+                                </li>
+                                <li>
+                                  Monday Wednesday and Friday from 09:00 - 12:00
+                                </li>
+                                <li>This course will start on October 14.</li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="modal-box">
+                            <h3>Schedule</h3>
+                            <div class="box-content">
+                              <ul>
+                                <li>
+                                  54 hours / 3 days * 3 hours per day / 6 weeks.
+                                </li>
+                                <li>
+                                  Monday Wednesday and Friday from 09:00 - 12:00
+                                </li>
+                                <li>This course will start on October 14.</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-instructor-wrapper row">
+                          <div class="col-12 col-md-4">
+                            <div class="instructor-image">
+                              <img src="~/assets/images/avatar2.png" alt="" />
+                            </div>
+                          </div>
+                          <div class="instructor-details col-12 col-md-8">
+                            <span>Instruktor</span>
+                            <h4>Urim Karakashi</h4>
+                            <p>
+                              Abdullah Hasani is Prishtina based Graphic
+                              Designer and founder of Honedon creative agency,
+                              with over 10 Years of experience in creative
+                              field. Abdullah has helped build brand identities
+                              and promotional material for local and
+                              international businesses as well as advertising
+                              campaigns and digital products for corporate
+                              companies. Abdullah has a wide creative
+                              background, he studied in Faculty of Visual Arts
+                              and has bachelor degree in Graphic Design.
+                            </p>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  <img
+                                    src="~/assets/images/icons/facebook.png"
+                                    alt="facebook-icon"
+                                  />
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  <img
+                                    src="~/assets/images/icons/instagram.png"
+                                    alt="instagram-icon"
+                                  />
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  <img
+                                    src="~/assets/images/icons/Behance.png"
+                                    alt="behance-icon"
+                                  />
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  <img
+                                    src="~/assets/images/icons/Dribbble.png"
+                                    alt="dribbble-icon"
+                                  />
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  <img
+                                    src="~/assets/images/icons/Linkedin.png"
+                                    alt="linkedin-icon"
+                                  />
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
                       </div>
                       <div class="modal-footer">
                         <div class="modal-footer-content">
-                          <form>
+                          <form asp-action="SendApplication" method="post">
+                            <input type="hidden" asp-for="@Model.CourseTitle" value="UI/UX Design Training" />
                             <div class="row">
                               <div class="col-md-6">
                                 <label for="exampleInputName" class="form-label"
                                   >Emri:</label
                                 >
                                 <input
-                                  type="email"
+                                  type="text"
+                                  asp-for="@Model.FirstName"
                                   class="form-control"
-                                  id="exampleInputEmail1"
-                                  aria-describedby="emailHelp"
-                                  style="height: 58px"
+                                  style="height: 52px"
                                 />
+                                <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
                               </div>
                               <div class="col-md-6">
                                 <label
@@ -515,11 +609,12 @@
                                   >Mbiemri:</label
                                 >
                                 <input
-                                  type="password"
+                                  type="text"
                                   class="form-control"
-                                  id="exampleInputPassword1"
-                                  style="height: 58px"
+                                  asp-for="@Model.LastName"
+                                  style="height: 52px"
                                 />
+                                <span asp-validation-for="@Model.LastName" class="text-danger"></span>
                               </div>
                             </div>
                             <div class="row">
@@ -532,9 +627,10 @@
                                 <input
                                   type="email"
                                   class="form-control"
-                                  id="exampleInputEmail1"
-                                  aria-describedby="emailHelp"
+                                  asp-for="@Model.Email"
+                                  style="height: 52px"
                                 />
+                                <span asp-validation-for="@Model.Email" class="text-danger"></span>
                               </div>
                               <div class="col-md-6">
                                 <label
@@ -543,79 +639,371 @@
                                   >Numri i telefonit:</label
                                 >
                                 <input
-                                  type="password"
+                                  type="text"
                                   class="form-control"
-                                  id="exampleInputPhoneNumber"
+                                  asp-for="@Model.Phone"
+                                  style="height: 52px"
                                 />
+                                <span asp-validation-for="@Model.Phone" class="text-danger"></span>
                               </div>
                             </div>
-                            <button type="submit" class="btn btn-secondary">
+                            <button type="submit" class="btn btn-primary">
                               Apliko
                             </button>
                           </form>
                         </div>
-                        <div class="bottom-button">
-                          <button
-                            class="btn btn-secondary"
-                            data-bs-target="#exampleModalToggle2"
-                            data-bs-toggle="modal"
-                          >
-                            Me Shume
-                          </button>
-                        </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="modal fade"
-                  id="exampleModalToggle2"
-                  aria-hidden="true"
-                  aria-labelledby="exampleModalToggleLabel2"
-                  tabindex="-1"
-                >
-                  <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h1
-                          class="modal-title fs-5"
-                          id="exampleModalToggleLabel2"
-                        >
-                          Modal 2
-                        </h1>
+                      <div class="modal-footer-button">
                         <button
+                          class="btn btn-secondary"
                           type="button"
-                          class="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
-                      </div>
-                      <div class="modal-body">
-                        Hide this modal and show the first with the button
-                        below.
-                      </div>
-                      <div class="modal-footer">
-                        <button
-                          class="btn btn-primary"
-                          data-bs-target="#exampleModalToggle"
-                          data-bs-toggle="modal"
+                          onclick=" showContent('modal-body-2')"
                         >
-                          Back to first
+                          Me Shume
                         </button>
                       </div>
                     </div>
                   </div>
                 </div>
+                
                 <button
                   class="btn btn-primary d-none d-md-inline"
-                  data-bs-target="#exampleModalToggle"
+                  data-bs-target="#modal2"
                   data-bs-toggle="modal"
                 >
                   Apliko
                 </button>
                 <button
                   class="btn btn-secondary d-none d-md-inline"
-                  data-bs-target="#exampleModalToggle2"
+                  data-bs-target="#modal2"
+                  data-bs-toggle="modal"
+                >
+                  Më Shumë
+                </button>
+              </div>
+            </div>
+          </div>
+          @*Card 3*@
+          <div class="training-card col-12 col-md-10 col-sm-12 row">
+            <div class="avatar-info col-12 col-md-5 p-0">
+              <img
+                src="~/assets/images/avatar3.png"
+                class="avatar-image"
+                alt="avatarImage"
+              />
+              <div class="avatar-detail">
+                <span>Instruktor</span>
+                <h4>Fuad Miftari</h4>
+                <p>Motion Designer / Founder at Leviz</p>
+                <ul>
+                  <li>
+                    <a href="#">
+                      <img
+                        src="~/assets/images/icons/facebook.png"
+                        alt="facebook-icon"
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <img
+                        src="~/assets/images/icons/instagram.png"
+                        alt="instagram-icon"
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <img src="~/assets/images/icons/Behance.png" alt="behance-icon" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <img
+                        src="~/assets/images/icons/Dribbble.png"
+                        alt="dribbble-icon"
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <img
+                        src="~/assets/images/icons/Linkedin.png"
+                        alt="linkedin-icon"
+                      />
+                    </a>
+                  </li>
+                </ul>
+                <div class="button-wrapper">
+                  <button
+                    class="btn btn-primary d-inline d-md-none"
+                    data-bs-target="#modal3"
+                    data-bs-toggle="modal"
+                  >
+                    Apliko
+                  </button>
+                  <button
+                    class="btn btn-secondary d-inline d-md-none"
+                    data-bs-target="#modal3"
+                    data-bs-toggle="modal"
+                  >
+                    Më Shumë
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="training-detail col-12 col-md-7">
+              <h2>Motion Design <br />Training</h2>
+              <p class="first-paragraph">24 Prill 2023 — 24 Maj 2023</p>
+              <ul>
+                <li>54 hours / 3 days * 3 hours per day / 6 weeks.</li>
+                <li>Monday, Wednesday and Friday from 09:00 - 12:00</li>
+                <li><strong>Price: 300 €</strong></li>
+              </ul>
+              <div class="button-wrapper">
+                <div
+                  class="modal fade modal-xl"
+                  id="modal3"
+                  aria-hidden="true"
+                  aria-labelledby="exampleModalToggleLabel"
+                  tabindex="-1"
+                >
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                      <div
+                        class="modal-header d-flex flex-column align-items-start"
+                      >
+                        <h1 class="modal-title" id="exampleModalToggleLabel">
+                          Motion Design <br />
+                          Training
+                        </h1>
+                        <p class="first-paragraph">
+                          24 Prill 2023 — 24 Maj 2023
+                        </p>
+                        <div class="modal-header-box">
+                          <p>
+                            Graphic design is the process of visual
+                            communication and problem-solving through the use of
+                            typography, photography, iconography, and
+                            illustration.
+                          </p>
+                        </div>
+                        <div class="modal-header-box">
+                          <p>Price: 300 Euro (20% discount for student)</p>
+                          <p>Application Deadline: April 23rd</p>
+                        </div>
+                      </div>
+                      <div class="modal-body d-none" id="modal-body-3">
+                        <div class="modal-content-wrapper">
+                          <div class="modal-content-header">
+                            <h3>Course Details</h3>
+                          </div>
+                          <div class="modal-box">
+                            <h3>Schedule</h3>
+                            <div class="box-content">
+                              <ul>
+                                <li>
+                                  54 hours / 3 days * 3 hours per day / 6 weeks.
+                                </li>
+                                <li>
+                                  Monday Wednesday and Friday from 09:00 - 12:00
+                                </li>
+                                <li>This course will start on October 14.</li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="modal-box">
+                            <h3>Schedule</h3>
+                            <div class="box-content">
+                              <ul>
+                                <li>
+                                  54 hours / 3 days * 3 hours per day / 6 weeks.
+                                </li>
+                                <li>
+                                  Monday Wednesday and Friday from 09:00 - 12:00
+                                </li>
+                                <li>This course will start on October 14.</li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="modal-box">
+                            <h3>Schedule</h3>
+                            <div class="box-content">
+                              <ul>
+                                <li>
+                                  54 hours / 3 days * 3 hours per day / 6 weeks.
+                                </li>
+                                <li>
+                                  Monday Wednesday and Friday from 09:00 - 12:00
+                                </li>
+                                <li>This course will start on October 14.</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-instructor-wrapper row">
+                          <div class="col-12 col-md-4">
+                            <div class="instructor-image">
+                              <img src="~/assets/images/avatar3.png" alt="" />
+                            </div>
+                          </div>
+                          <div class="instructor-details col-12 col-md-8">
+                            <span>Instruktor</span>
+                            <h4>Fuad Miftari</h4>
+                            <p>
+                              Abdullah Hasani is Prishtina based Graphic
+                              Designer and founder of Honedon creative agency,
+                              with over 10 Years of experience in creative
+                              field. Abdullah has helped build brand identities
+                              and promotional material for local and
+                              international businesses as well as advertising
+                              campaigns and digital products for corporate
+                              companies. Abdullah has a wide creative
+                              background, he studied in Faculty of Visual Arts
+                              and has bachelor degree in Graphic Design.
+                            </p>
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  <img
+                                    src="~/assets/images/icons/facebook.png"
+                                    alt="facebook-icon"
+                                  />
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  <img
+                                    src="~/assets/images/icons/instagram.png"
+                                    alt="instagram-icon"
+                                  />
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  <img
+                                    src="~/assets/images/icons/Behance.png"
+                                    alt="behance-icon"
+                                  />
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  <img
+                                    src="~/assets/images/icons/Dribbble.png"
+                                    alt="dribbble-icon"
+                                  />
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  <img
+                                    src="~/assets/images/icons/Linkedin.png"
+                                    alt="linkedin-icon"
+                                  />
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <div class="modal-footer-content">
+                          <form asp-action="SendApplication" method="post">
+                            <input type="hidden" asp-for="@Model.CourseTitle" value="Motion Design Training" />
+                            <div class="row">
+                              <div class="col-md-6">
+                                <label for="exampleInputName" class="form-label"
+                                  >Emri:</label
+                                >
+                                <input
+                                  type="text"
+                                  asp-for="@Model.FirstName"
+                                  class="form-control"
+                                  style="height: 52px"
+                                />
+                                <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                              </div>
+                              <div class="col-md-6">
+                                <label
+                                  for="exampleInputSurname"
+                                  class="form-label"
+                                  >Mbiemri:</label
+                                >
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  asp-for="@Model.LastName"
+                                  style="height: 52px"
+                                />
+                                <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <label
+                                  for="exampleInputEmail"
+                                  class="form-label"
+                                  >Email:</label
+                                >
+                                <input
+                                  type="email"
+                                  class="form-control"
+                                  asp-for="@Model.Email"
+                                  style="height: 52px"
+                                />
+                                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                              </div>
+                              <div class="col-md-6">
+                                <label
+                                  for="exampleInputPhoneNumber"
+                                  class="form-label"
+                                  >Numri i telefonit:</label
+                                >
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  asp-for="@Model.Phone"
+                                  style="height: 52px"
+                                />
+                                <span asp-validation-for="@Model.Phone" class="text-danger"></span>
+                              </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                              Apliko
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                      <div class="modal-footer-button">
+                        <button
+                          class="btn btn-secondary"
+                          type="button"
+                          onclick=" showContent('modal-body-3')"
+                        >
+                          Me Shume
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <button
+                  class="btn btn-primary d-none d-md-inline"
+                  data-bs-target="#modal3"
+                  data-bs-toggle="modal"
+                >
+                  Apliko
+                </button>
+                <button
+                  class="btn btn-secondary d-none d-md-inline"
+                  data-bs-target="#modal3"
                   data-bs-toggle="modal"
                 >
                   Më Shumë
@@ -625,7 +1013,7 @@
           </div>
         </div>
       </section>
-      <section class="contact-section">
+      <section id="contact-section" class="contact-section">
         <div class="row">
           <div class="col-12 col-md-5">
             <div class="contact-info">
@@ -644,32 +1032,33 @@
           </div>
           <div class="col-12 col-md-7">
             <div class="form-wrapper">
-              <form>
+              <form asp-action="SendContact" method="post">
                 <div class="row">
+                  <div class="col-md-6">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Name"
+                      asp-for="@Model.FirstName"
+                      style="height: 58px"
+                    />
+                    <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                  </div>
                   <div class="col-md-6">
                     <input
                       type="email"
                       class="form-control"
-                      placeholder="Name"
-                      id="exampleInputEmail1"
-                      aria-describedby="emailHelp"
-                      style="height: 58px"
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <input
-                      type="password"
-                      class="form-control"
                       placeholder="Email"
-                      id="exampleInputPassword1"
+                      asp-for="@Model.Email"
                       style="height: 58px"
                     />
+                    <span asp-validation-for="@Model.Email" class="text-danger"></span>
                   </div>
                   <div class="col-12">
                     <textarea
                       class="form-control"
                       placeholder="Your Message"
-                      id="floatingTextarea2"
+                      asp-for="@Model.Message"
                       style="height: 141px"
                     ></textarea>
                   </div>
@@ -682,3 +1071,7 @@
           </div>
         </div>
       </section>
+
+@section Scripts{
+    <partial name="~/Views/Shared/_ValidationScriptsPartial.cshtml" />
+}

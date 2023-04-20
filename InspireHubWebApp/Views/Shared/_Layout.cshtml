@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Inspire Hub</title>
+    @*<title>@ViewData["Title"] - Inspire Hub</title>*@
+    <title>Inspire Hub</title>
     @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/InspireHubWebApp.styles.css" asp-append-version="true" />*@
@@ -16,58 +17,71 @@
 <body>
     <div class="top-nav"></div>
       <header class="" id="top-header">
-        <div class="container-fluid">
-          <div class="headerWrapper">
-            <a class="logo" href="/">
-              <img src="~/assets/images/Iogo.png" alt="" />
-            </a>
-            <nav>
-              <ul>
-                <li><a class="" href="/">HOME</a></li>
-                <li><a class="" href="/">TRAININGS</a></li>
-                <li><a class="" href="/">CONTACT</a></li>
-                <li>
-                  <a
-                    class="social-icon d-none d-md-inline"
-                    href="#"
-                    target="_blank"
-                  >
-                    <img src="~/assets/images/icons/facebook.png" alt="" />
-                  </a>
+      <div class="container-fluid">
+        <div class="headerWrapper">
+          <a class="logo d-none d-md-inline" href="/">
+            <img src="~/assets/images/Iogo.png" alt="" />
+          </a>
+          <a class="logo d-inline d-md-none" href="/">
+            <img src="~/assets/images/mobileLogo.png" alt="" />
+          </a>
+          <nav>
+            <ul>
+              <li>
+                <a onclick="onMenuClick()" class="" href="#top-section">HOME</a>
+              </li>
+              <li>
+                <a onclick="onMenuClick()" class="" href="#training-section"
+                  >TRAININGS</a
+                >
+              </li>
+              <li>
+                <a onclick="onMenuClick()" class="" href="#contact-section"
+                  >CONTACT</a
+                >
+              </li>
+              <li>
+                <a
+                  class="social-icon d-none d-md-inline"
+                  href="#"
+                  target="_blank"
+                >
+                  <img src="~/assets/images/icons/facebook.png" alt="" />
+                </a>
 
-                  <a
-                    class="social-icon d-none d-md-inline"
-                    href="#"
-                    target="_blank"
-                  >
-                    <img src="~/assets/images/icons/instagram.png" alt="" />
-                  </a>
+                <a
+                  class="social-icon d-none d-md-inline"
+                  href="#"
+                  target="_blank"
+                >
+                  <img src="~/assets/images/icons/instagram.png" alt="" />
+                </a>
 
-                  <a
-                    class="social-icon d-inline d-md-none p-35"
-                    href="#"
-                    target="_blank"
-                  >
-                    <img src="~/assets/images/icons/facebookWhite.png" alt="" />
-                  </a>
-                  <a
-                    class="social-icon d-inline d-md-none"
-                    href="#"
-                    target="_blank"
-                  >
-                    <img src="~/assets/images/icons/instagramWhite.png" alt="" />
-                  </a>
-                </li>
-              </ul>
-            </nav>
-            <div class="burgerMenu" onclick="openNavLinks()">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
+                <a
+                  class="social-icon d-inline d-md-none p-35"
+                  href="#"
+                  target="_blank"
+                >
+                  <img src="~/assets/images/icons/facebookWhite.png" alt="" />
+                </a>
+                <a
+                  class="social-icon d-inline d-md-none"
+                  href="#"
+                  target="_blank"
+                >
+                  <img src="~/assets/images/icons/instagramWhite.png" alt="" />
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="burgerMenu" onclick="openNavLinks()">
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
         </div>
-      </header>
+      </div>
+    </header>
     <div class="container-fluid">
         @RenderBody()
     </div>
@@ -109,8 +123,8 @@
     <div class="bottonDiv"></div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/assets/javascript/main.js"></script>
-    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>*@
     @await RenderSectionAsync("Scripts", required: false)
 </body>

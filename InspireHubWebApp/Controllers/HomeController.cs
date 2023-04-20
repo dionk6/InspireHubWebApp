@@ -43,6 +43,24 @@ namespace InspireHubWebApp.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public async Task<IActionResult> SendContact(Application model)
+        {
+            model.CourseTitle = "Message";
+            var message = $"Hello," +
+                             $"<br /> <br />" +
+                             $"Fullname: <b>{model.FirstName}</b> " +
+                             $"<br />" +
+                             $"Email: {model.Email}" +
+                             $"<br />" +
+                             $"Message:" +
+                             $"<br />" +
+                             $"{model.Message}";
+            model.Message = message;
+            await _emailService.SendEmailAsync(model);
+            return RedirectToAction("Index");
+        }
+
 
         public IActionResult Privacy()
         {
