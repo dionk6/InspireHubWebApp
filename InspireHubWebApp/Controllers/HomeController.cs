@@ -20,8 +20,8 @@ namespace InspireHubWebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            /*var contact = new Application();
-            contact.CourseTitle = "Graphic Design Training";
+            var contact = new Application();
+            /*contact.CourseTitle = "Graphic Design Training";
             contact.FirstName = "Dion";
             contact.LastName = "Kuka";
             contact.Email = "kukadion1@gmail.com";
@@ -39,8 +39,28 @@ namespace InspireHubWebApp.Controllers
                              $"Course: <b>{contact.CourseTitle}</b> ";
             contact.Message = message;
             await _emailService.SendEmailAsync(contact);*/
-            return View();
+            return View(contact);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> SendApplication(Application model)
+        {
+            var message = $"Hello," +
+                             $"<br /> <br />" +
+                             $"A new student has just applied to a course." +
+                             $"<br /> <br />" +
+                             $"Fullname: <b>{model.FirstName + " " + model.LastName}</b> " +
+                             $"<br />" +
+                             $"Email: {model.Email}" +
+                             $"<br />" +
+                             $"Phone: {model.Phone}" +
+                             $"<br />" +
+                             $"Course: <b>{model.CourseTitle}</b> ";
+            model.Message = message;
+            await _emailService.SendEmailAsync(model);
+            return RedirectToAction("Index");
+        }
+
 
         public IActionResult Privacy()
         {

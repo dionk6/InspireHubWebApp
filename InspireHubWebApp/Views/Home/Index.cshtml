@@ -1,23 +1,25 @@
-﻿@{
+﻿@using InspireHubWebApp.DTOs
+@model Application
+@{
     ViewData["Title"] = "Home";
 }
 
 <section class="top-section d-flex flex-column align-items-center">
-        <div class="main-title">
-          <h1>Learn what you love!</h1>
-          <p>
-            It is a long established fact that a reader will be distracted by
-            the readable <br />content of a page when looking at its layout.
-          </p>
-        </div>
-        <div class="image-wrapper">
-          <img
-            src="~/assets/images/image-1.png"
-            alt=""
-            class="w-100 h-100 object-fit-cover"
-          />
-        </div>
-      </section>
+    <div class="main-title">
+        <h1>Learn what you love!</h1>
+        <p>
+        It is a long established fact that a reader will be distracted by
+        the readable <br />content of a page when looking at its layout.
+        </p>
+    </div>
+    <div class="image-wrapper">
+        <img
+        src="~/assets/images/image-1.png"
+        alt=""
+        class="w-100 h-100 object-fit-cover"
+        />
+    </div>
+    </section>
       <section class="training-section d-flex flex-column align-items-center">
         <div class="main-title">
           <h1>Trajnimet</h1>
@@ -257,17 +259,17 @@
                       </div>
                       <div class="modal-footer">
                         <div class="modal-footer-content">
-                          <form>
+                          <form asp-action="SendApplication" method="post">
+                            <input type="hidden" asp-for="@Model.CourseTitle" value="Graphic Design Training" />
                             <div class="row">
                               <div class="col-md-6">
                                 <label for="exampleInputName" class="form-label"
                                   >Emri:</label
                                 >
                                 <input
-                                  type="email"
+                                  type="text"
+                                  asp-for="@Model.FirstName"
                                   class="form-control"
-                                  id="exampleInputEmail1"
-                                  aria-describedby="emailHelp"
                                   style="height: 52px"
                                 />
                               </div>
@@ -278,9 +280,9 @@
                                   >Mbiemri:</label
                                 >
                                 <input
-                                  type="password"
+                                  type="text"
                                   class="form-control"
-                                  id="exampleInputPassword1"
+                                  asp-for="@Model.LastName"
                                   style="height: 52px"
                                 />
                               </div>
@@ -295,8 +297,7 @@
                                 <input
                                   type="email"
                                   class="form-control"
-                                  id="exampleInputEmail1"
-                                  aria-describedby="emailHelp"
+                                  asp-for="@Model.Email"
                                   style="height: 52px"
                                 />
                               </div>
@@ -307,9 +308,9 @@
                                   >Numri i telefonit:</label
                                 >
                                 <input
-                                  type="password"
+                                  type="text"
                                   class="form-control"
-                                  id="exampleInputPhoneNumber"
+                                  asp-for="@Model.Phone"
                                   style="height: 52px"
                                 />
                               </div>
