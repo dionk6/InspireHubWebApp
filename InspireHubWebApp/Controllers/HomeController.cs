@@ -21,24 +21,6 @@ namespace InspireHubWebApp.Controllers
         public async Task<IActionResult> Index()
         {
             var contact = new Application();
-            /*contact.CourseTitle = "Graphic Design Training";
-            contact.FirstName = "Dion";
-            contact.LastName = "Kuka";
-            contact.Email = "kukadion1@gmail.com";
-            contact.Phone = "+38344307373";
-            var message = $"Hello," +
-                             $"<br /> <br />" +
-                             $"A new student has just applied to a course." +
-                             $"<br /> <br />" +
-                             $"Fullname: <b>{contact.FirstName + " " + contact.LastName}</b> " +
-                             $"<br />" +
-                             $"Email: {contact.Email}" +
-                             $"<br />" +
-                             $"Phone: {contact.Phone}" +
-                             $"<br />" +
-                             $"Course: <b>{contact.CourseTitle}</b> ";
-            contact.Message = message;
-            await _emailService.SendEmailAsync(contact);*/
             return View(contact);
         }
 
