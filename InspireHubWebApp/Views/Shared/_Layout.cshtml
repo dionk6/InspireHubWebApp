@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Inspire Hub</title>
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/InspireHubWebApp.styles.css" asp-append-version="true" />*@
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="~/assets/css/style.css" />
+</head>
+<body>
+    <div class="top-nav"></div>
+      <header class="" id="top-header">
+        <div class="container-fluid">
+          <div class="headerWrapper">
+            <a class="logo" href="/">
+              <img src="~/assets/images/Iogo.png" alt="" />
+            </a>
+            <nav>
+              <ul>
+                <li><a class="" href="/">HOME</a></li>
+                <li><a class="" href="/">TRAININGS</a></li>
+                <li><a class="" href="/">CONTACT</a></li>
+                <li>
+                  <a
+                    class="social-icon d-none d-md-inline"
+                    href="#"
+                    target="_blank"
+                  >
+                    <img src="~/assets/images/icons/facebook.png" alt="" />
+                  </a>
+
+                  <a
+                    class="social-icon d-none d-md-inline"
+                    href="#"
+                    target="_blank"
+                  >
+                    <img src="~/assets/images/icons/instagram.png" alt="" />
+                  </a>
+
+                  <a
+                    class="social-icon d-inline d-md-none p-35"
+                    href="#"
+                    target="_blank"
+                  >
+                    <img src="~/assets/images/icons/facebookWhite.png" alt="" />
+                  </a>
+                  <a
+                    class="social-icon d-inline d-md-none"
+                    href="#"
+                    target="_blank"
+                  >
+                    <img src="~/assets/images/icons/instagramWhite.png" alt="" />
+                  </a>
+                </li>
+              </ul>
+            </nav>
+            <div class="burgerMenu" onclick="openNavLinks()">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+      </header>
+    <div class="container-fluid">
+        @RenderBody()
+    </div>
+    @*<div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>*@
+
+    <footer>
+      <div class="container-fluid">
+        <div class="footer-wrapper w-100 d-flex justify-content-between">
+          <a class="navbar-brand" href="#">
+            <img
+              src="~/assets/images/Iogo.png"
+              alt="Bootstrap"
+              width="188"
+              height="50"
+            />
+          </a>
+          <div class="w-100 align-content-center d-flex flex-column-reverse flex-sm-row flex-md-row">
+            <p class="w-100 d-flex align-items-center justify-content-center">
+              © 2023 Inspire Hub. All rights reserved.
+            </p>
+            <ul class="w-auto d-flex justify-content-center justify-md-content-end m-0 p-0">
+              <li class="nav-social-icons nav-item p-0 d-flex align-items-center">
+                <a href="#">
+                  <img src="~/assets/images/icons/facebook.png" alt="" />
+                </a>
+                <a href="#">
+                  <img src="~/assets/images/icons/instagram.png" alt="" />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div class="bottonDiv"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/javascript/main.js"></script>
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>*@
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
