@@ -257,7 +257,7 @@ header.active .burgerMenu span:nth-child(3) {
 
     .training-card .avatar-info {
         background-color: #ededed;
-        background-image: url("../images/bacgroundGrid.png");
+        background-image: url("../images/bacgroundGrid.svg");
     }
 
 .avatar-info .avatar-image {
@@ -641,7 +641,7 @@ textarea {
     width: 100%;
     padding: 46px 0px 56px 62px;
     background-color: #ededed;
-    background-image: url(../images/bacgroundGrid.png);
+    background-image: url(../images/bacgroundGrid.svg);
 }
 
 /* Footer -----------*/

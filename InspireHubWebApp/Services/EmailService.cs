@@ -13,7 +13,7 @@ namespace InspireHubWebApp.Services
 
             message.From.Add(new MailboxAddress("Inspire Hub", "hello@inspirehub.info"));
 
-            message.To.Add(MailboxAddress.Parse("dion.kuka@ubt-uni.net"));
+            message.To.Add(MailboxAddress.Parse("hello@inspirehub.info"));
 
             //message.ReplyTo.Add(MailboxAddress.Parse(contact.Email));
 
