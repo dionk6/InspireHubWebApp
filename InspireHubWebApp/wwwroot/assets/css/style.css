@@ -63,91 +63,87 @@ header {
     transition: all 0.15s ease-in-out 0.15s;
 }
 
-    header .headerWrapper {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        background-color: transparent;
-        padding: 58px 0px 83px 0px;
-        -webkit-transition: background-color 0.15s ease-in-out 0.15s;
-        -ms-transition: background-color 0.15s ease-in-out 0.15s;
-        transition: background-color 0.15s ease-in-out 0.15s;
+header .headerWrapper {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+background-color: transparent;
+padding: 58px 0px 83px 0px;
+-webkit-transition: background-color 0.15s ease-in-out 0.15s;
+-ms-transition: background-color 0.15s ease-in-out 0.15s;
+transition: background-color 0.15s ease-in-out 0.15s;
+}
+
+header .headerWrapper .logo {
+    width: 188px;
+    height: 49px;
+}
+
+    header .headerWrapper .logo img {
+        width: 100%;
+        height: 100%;
     }
 
-        header .headerWrapper .logo {
-            width: 188px;
-            height: 49px;
-        }
-
-            header .headerWrapper .logo img {
-                width: 100%;
-                height: 100%;
-            }
-
-        header .headerWrapper nav {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-        }
-
-            header .headerWrapper nav .languageButtons .headerDropdown {
-                margin-left: 60px;
-            }
-
-            header .headerWrapper nav .languageButtonsMobile {
-                display: none;
-                justify-content: center;
-                align-items: center;
-                flex-wrap: wrap;
-                margin: 64px 0;
-            }
-
-            header .headerWrapper nav ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
-
-        header .headerWrapper ul li {
-            display: inline-block;
-            padding-right: 64px;
-        }
-
-            header .headerWrapper ul li:last-child {
-                padding: 0px;
-            }
-
-                header .headerWrapper ul li:last-child a:first-child {
-                    padding-right: 19px;
-                }
-
-            header .headerWrapper ul li a {
-                font-family: "Mont-semibold";
-                text-decoration: none;
-                font-style: normal;
-                font-weight: 600;
-                font-size: 18px;
-                line-height: 24px;
-                color: #021255;
-                transition: color 0.15s ease-in-out 0.15s;
-            }
-            /* header .headerWrapper ul li a:hover,
-header .headerWrapper ul li a.active {
-  color: #faaf40;
+header .headerWrapper nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
-header.whiteColor .headerWrapper ul li a:hover,
-header.whiteColor .headerWrapper ul li a.active {
-  color: #ec008c;
-} */
 
-            header .headerWrapper ul li:first-child a {
-                margin-left: 0px;
-            }
+header .headerWrapper nav .languageButtons .headerDropdown {
+    margin-left: 60px;
+}
 
-            header .headerWrapper ul li:last-child a {
-                margin-right: 0px;
-            }
+header .headerWrapper nav .languageButtonsMobile {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 64px 0;
+}
+
+header .headerWrapper nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+header .headerWrapper ul li {
+    display: inline-block;
+    padding-right: 64px;
+}
+
+header .headerWrapper ul li:last-child {
+    padding: 0px;
+}
+
+    header .headerWrapper ul li:last-child a:first-child {
+        padding-right: 19px;
+    }
+
+header .headerWrapper ul li a {
+    font-family: "Mont-semibold";
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    color: #021255;
+    transition: color 0.15s ease-in-out 0.15s;
+}
+    header .headerWrapper ul li a:hover,
+    header .headerWrapper ul li a.active {
+        color: #8452FF;
+    }
+
+header .headerWrapper ul li:first-child a {
+    margin-left: 0px;
+}
+
+header .headerWrapper ul li:last-child a {
+    margin-right: 0px;
+}
 
 .burgerMenu {
     position: relative;
@@ -185,16 +181,19 @@ header.active .burgerMenu span {
 
 header.active .burgerMenu span:nth-child(1) {
     transform: rotate(45deg) translate(6px, 6px);
+    background-color:#fff;
 }
 
 header.active .burgerMenu span:nth-child(2) {
     transform: translateX(100%);
     opacity: 0;
     pointer-events: none;
+    background-color: #fff;
 }
 
 header.active .burgerMenu span:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -6px);
+    background-color: #fff;
 }
 /* main */
 
@@ -206,21 +205,22 @@ header.active .burgerMenu span:nth-child(3) {
     text-align: center;
 }
 
-    .main-title h1 {
-        font-style: normal;
-        font-weight: 900;
-        font-size: clamp(2.625rem, 2.0524rem + 2.6178vw, 4.5rem);
-        line-height: 97px;
-        color: #021255;
-    }
+.main-title h1 {
+    font-style: normal;
+    font-weight: 900;
+    font-size: clamp(2.625rem, 2.0524rem + 2.6178vw, 4.5rem);
+    line-height: 97px;
+    color: #021255;
+}
 
-    .main-title p {
-        font-style: normal;
-        font-weight: 600;
-        font-size: clamp(0.875rem, 0.7986rem + 0.349vw, 1.125rem);
-        line-height: 150.51%;
-        color: #626262;
-    }
+.main-title p {
+    font-style: normal;
+    font-weight: 600;
+    font-size: clamp(0.875rem, 0.7986rem + 0.349vw, 1.125rem);
+    line-height: 150.51%;
+    color: #626262;
+    margin:0px;
+}
 
 .image-wrapper {
     width: 100%;
@@ -358,10 +358,16 @@ header.active .burgerMenu span:nth-child(3) {
         margin-bottom: 69px;
     }
 
-        .training-detail ul li {
-            font-size: clamp(1rem, 0.9618rem + 0.1745vw, 1.125rem);
-            margin-bottom: 8px;
-        }
+.training-detail ul li {
+    font-size: clamp(1rem, 0.9618rem + 0.1745vw, 1.125rem);
+    margin-bottom: 8px;
+}
+
+.training-detail ul li::marker {
+    font-size: clamp(1rem, 0.9618rem + 0.1745vw, 1.125rem);
+    margin-bottom: 8px;
+    color: #29D197;
+}
 
 .button-wrapper .btn {
     font-size: clamp(1rem, 0.9618rem + 0.1745vw, 1.125rem);
@@ -374,9 +380,18 @@ header.active .burgerMenu span:nth-child(3) {
     margin-right: 21px;
 }
 
+.btn.btn-primary:hover {
+    background-color: #1DB882;
+}
+
 .btn.btn-secondary {
     background-color: #8452ff;
 }
+
+.btn.btn-secondary:hover {
+    background-color: #612DE0;
+}
+
 
 /* contact section ------ */
 .contact-section {
@@ -386,6 +401,7 @@ header.active .burgerMenu span:nth-child(3) {
     background-image: url("../images/blurredGradient.png");
     background-repeat: no-repeat;
     background-size: cover;
+    background-position:top right;
 }
 
 .contact-info h2 {
@@ -482,9 +498,9 @@ textarea {
         font-family: "Mont-bold";
         font-style: normal;
         font-weight: 800;
-        font-size: 24px;
         color: #021255;
         padding: 10px 16px;
+        border-color: #8452FF;
     }
 
     .modal-header .modal-header-box {
@@ -495,12 +511,13 @@ textarea {
 
         .modal-header .modal-header-box:last-child {
             padding-top: 24px;
+            border:none;
         }
 
         .modal-header .modal-header-box p {
             font-style: normal;
             font-weight: 600;
-            font-size: 18px;
+            font-size: clamp(0.8125rem, 0.698rem + 0.5236vw, 1.1875rem);
             line-height: 24px;
             color: #021255;
             margin: 0;
@@ -523,17 +540,21 @@ textarea {
         padding: 0 0 33px 0;
     }
 
-        .modal-body .modal-content-header h3 {
-            font-style: normal;
-            font-weight: 800;
-            font-size: clamp(1.125rem, 1.0105rem + 0.5236vw, 1.5rem);
-            line-height: 32px;
-            font-family: "Mont-bold";
-        }
+    .modal-body .modal-content-header h3 {
+        font-style: normal;
+        font-weight: 800;
+        font-size: clamp(1.125rem, 1.0105rem + 0.5236vw, 1.5rem);
+        line-height: 32px;
+        font-family: "Mont-bold";
+    }
 
     .modal-body .modal-content-wrapper .modal-box {
         padding: 33px 0px;
         border-bottom: 2px dashed #a7a7a7;
+    }
+
+    .modal-body .modal-content-wrapper .modal-box:last-child {
+        border:none;
     }
 
         .modal-body .modal-content-wrapper .modal-box h3 {
@@ -541,11 +562,16 @@ textarea {
             padding: 8px 10px;
             border-radius: 8px;
             font-family: "Mont-semibold";
+            font-size: clamp(1.0625rem, 0.9289rem + 0.6108vw, 1.5rem);
         }
 
 .modal-box .box-content {
     padding-top: 26px;
 }
+
+    .modal-box .box-content p {
+        padding: 0px 10px;
+    }
 
     .modal-box .box-content ul {
         margin-bottom: 0;
@@ -557,6 +583,7 @@ textarea {
 
 .modal-instructor-wrapper {
     padding: 68px 0px 55px 0px;
+    border-bottom:2px dashed #a7a7a7;
 }
 
 .modal-body .modal-instructor-wrapper .instructor-image {
@@ -592,8 +619,19 @@ textarea {
         margin-bottom: 17px;
     }
 
+    .modal-instructor-wrapper .instructor-details p.modal-instructor-role {
+        position:relative;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 18px;
+        color: #021255;
+        padding-bottom: 21px;
+    }
+
     .modal-instructor-wrapper .instructor-details p {
         margin-bottom: 25px;
+        font-size: clamp(0.875rem, 0.8368rem + 0.1745vw, 1rem);
     }
 
     .modal-instructor-wrapper .instructor-details ul {
@@ -706,7 +744,9 @@ footer {
 
 @media only screen and (min-width: 320px) and (max-width: 480px) {
     .main-title h1 {
-        line-height: unset;
+        margin-top: 15px;
+        line-height: 51px;
+        padding: 0px 10px;
     }
 }
 
@@ -795,20 +835,18 @@ footer {
             margin-bottom: 0px;
         }
 
-        header.whiteColor .headerWrapper nav ul li a:hover,
         header .headerWrapper nav ul li a:hover,
-        header.whiteColor .headerWrapper nav ul li a.active,
         header .headerWrapper nav ul li a.active {
             color: #84008f;
         }
 
-        header.whiteColor .headerWrapper nav ul li a,
         header .headerWrapper nav ul li a {
             font-style: normal;
             font-weight: 900;
             font-size: 42px;
             line-height: 51px;
             color: #fff;
+            font-family: "Mont-heavy";
         }
 
     .image-wrapper {
@@ -885,23 +923,64 @@ footer {
 }
 
 @media only screen and (max-width: 576px) {
+    .mt-37 {
+        margin-top: 37px;
+    }
+
+    .modal-body{
+        padding:0px 0px 0px 0px;
+    }
+
+    .modal-body .modal-content-wrapper{
+        border-radius:0;
+    }
+
+    .modal-content {
+        background-size: contain;
+    }
+
+    .modal-body .modal-content-wrapper .modal-box .box-content ul li::marker{
+        color:unset;
+    }
+
+    .modal-body .modal-content-header {
+        padding: 0px 0px 24px 0px;
+    }
+
+    .modal-header .first-paragraph {
+        padding: 6px 10px;
+    }
+
     .modal-instructor-wrapper {
-        padding: 68px 0px 3px 0px;
+        padding: 68px 22px 0px 22px;
+        border:none;
+    }
+
+    .modal-instructor-wrapper .instructor-details ul{
+        padding-bottom: 53px;
+        border-bottom: 2px dashed #a7a7a7;
     }
 
     .modal.show .modal-dialog {
         max-width: 100%;
     }
 
+    .contact-section {
+        margin: 53px 0px 61px 0px;
+    }
+
+    .training-card:last-child {
+        margin-bottom:0px;
+    }
     .footer-wrapper {
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
 
-        .footer-wrapper a.navbar-brand {
-            margin-bottom: 32px;
-        }
+    .footer-wrapper a.navbar-brand {
+        margin-bottom: 32px;
+    }
 
     footer .footer-wrapper ul {
         margin-bottom: 34px !important;
@@ -917,5 +996,48 @@ footer {
 
     .avatar-info .avatar-detail {
         padding: 25px 0px 27px 18px;
+    }
+
+    .top-section .main-title {
+        margin-bottom:58px;
+    }
+    
+    .training-section .main-title {
+        padding:40px 0px 59px 0px;
+    }
+    .modal-footer > * {
+        margin:0px;
+    }
+
+    .modal-footer{
+        padding:40px 18px 47px 18px;
+    }
+
+    .modal-footer .modal-footer-content .btn.btn-primary {
+        padding: 10px 131px;
+        margin-top:41px;
+    }
+
+    .modal-footer-button {
+        padding: 46px 18px 56px 18px;
+    }
+
+        .modal-footer-button .btn.btn-secondary {
+            padding: 10px 133px;
+        }
+
+    .modal-instructor-wrapper .instructor-details h4 {
+        margin-bottom:7px;
+    }
+
+    .modal-instructor-wrapper .instructor-details p.modal-instructor-role::after {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        content: '............';
+        width: 80px;
+        height: 14px;
+        font-size:28px;
+        color: #a7a7a7;
     }
 }
