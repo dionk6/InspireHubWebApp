@@ -14,5 +14,7 @@ namespace InspireHubWebApp.DTOs
         [Required(ErrorMessage = "Phone is required")]
         public string? Phone { get; set; }
         public string? Message { get; set; }
+        [Required]
+        public string token { get; set; }
     }
 }
