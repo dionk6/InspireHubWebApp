@@ -114,13 +114,18 @@ header .headerWrapper ul li {
     padding-right: 64px;
 }
 
+    header .headerWrapper ul li a svg:hover path {
+        fill: #021255;
+        transition: all 0.4s ease-in-out 0s;
+    }
+
 header .headerWrapper ul li:last-child {
     padding: 0px;
 }
 
-    header .headerWrapper ul li:last-child a:first-child {
-        padding-right: 19px;
-    }
+header .headerWrapper ul li:last-child a:first-child {
+    padding-right: 19px;
+}
 
 header .headerWrapper ul li a {
     font-family: "Mont-semibold";
@@ -309,6 +314,11 @@ header.active .burgerMenu span:nth-child(3) {
 
     .avatar-detail ul li {
         padding: 0px 16px 0px 0px;
+    }
+
+    .avatar-detail ul li a svg:hover path {
+        fill: #021255;
+        transition: all 0.4s ease-in-out 0s;
     }
 
 .training-detail {
@@ -702,6 +712,10 @@ footer {
         padding-right: 19px;
     }
 
+    footer ul li a svg:hover path {
+        fill: #021255;
+        transition: all 0.4s ease-in-out 0s;
+    }
 .bottonDiv {
     height: 28px;
     background-color: #29d197;
