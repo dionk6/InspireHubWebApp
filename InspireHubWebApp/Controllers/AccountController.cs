@@ -27,7 +27,7 @@ namespace InspireHubWebApp.Controllers
                 //kthimi i url ne home nese je e loguar
                 if (User.Identity.IsAuthenticated)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Training");
                 }
                 // Clear the existing external cookie to ensure a clean login process
                 await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);

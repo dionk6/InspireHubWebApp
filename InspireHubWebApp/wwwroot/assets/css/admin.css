@@ -1,0 +1,34 @@
+﻿.mainContentHolder {
+    min-height: calc(100vh - 146px);
+    padding-bottom: 50px;
+}
+
+.header-fixed.toolbar-fixed .wrapper {
+    padding-top: 100px;
+}
+
+.select2-container--bootstrap5 .select2-selection--single .select2-selection__rendered {
+    color: #000000;
+}
+
+.selectColor {
+    border: 1px solid #e4e6ef;
+    border-radius: 0.475rem;
+}
+
+.liveCheck .form-check.form-check-solid .form-check-input:checked {
+    background-color: #da0c0c;
+}
+
+.deleteIcon {
+    background: none;
+    border: none;
+}
+
+.symbol img {
+    object-fit: cover;
+}
+
+#liveDescDiv .tox-tinymce {
+    height: 300px !important;
+}
