@@ -4,11 +4,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #84008F;
-    background-image: url('../images/MaskGroup.svg');
+    background-image: url('../images/mainBackground.png');
     background-repeat: no-repeat;
-    background-size: 400px;
-    background-position: bottom right;
+    background-size: cover;
+    background-position: right 7%;
 }
 
 .wrap {
@@ -38,7 +37,7 @@
     }
 
 .form-title h3 {
-    color: #EC008C;
+    color: #8452FF;
 }
 
 .form-group label {
@@ -60,10 +59,10 @@
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.btn.btn-primary {
-    background: #EC008C !important;
-    border: 1px solid #EC008C !important;
-    color: #fff !important;
+.loginForm .btn.btn-primary {
+    background: #8452FF;
+    border: 1px solid #8452FF;
+    color: #fff;
 }
 
 @media (max-width: 767.98px) {
