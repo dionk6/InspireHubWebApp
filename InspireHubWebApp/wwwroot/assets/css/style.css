@@ -941,6 +941,11 @@ footer {
         margin-top: 37px;
     }
 
+    body {
+        background-position: 80% 0%;
+        background-repeat: no-repeat;
+        background-size: 190%;
+    }
     .modal-body{
         padding:0px 0px 0px 0px;
     }
