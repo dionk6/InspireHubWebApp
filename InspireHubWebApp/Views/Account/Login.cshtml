@@ -1,0 +1,57 @@
+﻿@using InspireHubWebApp.DTOs
+@model SignInViewModel
+
+@{ 
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Inspire Hub</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/lib/fontawesome-pro/fontawesome-pro/css/all.min.css" rel="stylesheet" />
+    <link href="~/assets/css/login.css" rel="stylesheet" />
+    @*<link rel="icon" href="../../images/bigscoopIcon.ico" />*@
+</head>
+<body>
+    <section class="loginForm">
+        <div class="container" style="display: flex; justify-content: center;">
+            <div class="row wrap col-lg-10 p-0">
+                <div class="col-lg-6 p-0">
+                    <div class="image-div" style="background-image: url('../images/loginImage.jpg');">
+
+                    </div>
+                </div>
+                <div class="col-lg-6 p-0">
+                    <div class="loginForm-div p-4 p-md-5">
+                        <form asp-action="Login">
+                            <div class="form-title">
+                                <h3 class="mb-4">Sign In</h3>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" asp-for="Username" placeholder="Enter email">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" asp-for="Password" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>
