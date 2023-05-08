@@ -55,38 +55,36 @@ namespace InspireHubWebApp.Controllers
             {
                 ViewData["ReturnUrl"] = returnUrl;
 
-                if (ModelState.IsValid)
+                // This doesn't count login failures towards account lockout
+                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+
+                var user = await _userManager.FindByNameAsync(model.Username);
+
+                if (user == null)
                 {
-                    // This doesn't count login failures towards account lockout
-                    // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-
-                    var user = await _userManager.FindByNameAsync(model.Username);
-
-                    if (user == null)
-                    {
-                        ModelState.AddModelError("Username", "Username not found");
-                        return View(model);
-                    }
-
-                    var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, true, lockoutOnFailure: false);
-
-                    if (result.Succeeded)
-                    {
-                        return RedirectToAction("Index", "Dashboard");
-                    }
-
-                    if (result.IsLockedOut)
-                    {
-                        ModelState.AddModelError("Username", "User locked");
-                        return View(model);
-                    }
-                    else
-                    {
-                        string message = "Invalid password";
-                        ModelState.AddModelError("Password", message);
-                        return View(model);
-                    }
+                    ModelState.AddModelError("Username", "Username not found");
+                    return View(model);
                 }
+
+                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, true, lockoutOnFailure: false);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Training");
+                }
+
+                if (result.IsLockedOut)
+                {
+                    ModelState.AddModelError("Username", "User locked");
+                    return View(model);
+                }
+                else
+                {
+                    string message = "Invalid password";
+                    ModelState.AddModelError("Password", message);
+                    return View(model);
+                }
+                
 
 
                 // If we got this far, something failed, redisplay form
@@ -112,9 +110,48 @@ namespace InspireHubWebApp.Controllers
             }
         }
 
-        public IActionResult Index()
+        /*public async Task<IActionResult> Register()
         {
-            return View();
-        }
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var user = new IdentityUser
+                    {
+
+                        UserName = "hello@inspirehub.info",
+                        Email = "hello@inspirehub.info",
+                        PhoneNumber = null
+                    };
+
+                    var userExist = await _userManager.FindByEmailAsync(user.Email);
+
+                    if (userExist != null)
+                    {
+                        TempData["exists"] = "not null";
+                        return View();
+                    }
+
+                    var result = await _userManager.CreateAsync(user, "123456");
+
+                    if (!result.Succeeded)
+                    {
+                        return View();
+                    }
+
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Login", "Account");
+                    }
+
+                }
+                return View();
+            }
+
+            catch (Exception ex)
+            {
+                return View();
+            }
+        }*/
     }
 }
