@@ -122,6 +122,7 @@
                     class="btn btn-secondary d-inline d-md-none"
                     data-bs-target="#modal1"
                     data-bs-toggle="modal"
+                    onclick="showContent('modal-body-1')"
                   >
                     More
                   </button>
@@ -194,20 +195,6 @@
                               </ul>
                             </div>
                           </div>
-                         @* <div class="modal-box">
-                            <h3>Certification / Completion</h3>
-                            <div class="box-content">
-                                <span>Minimum criteria:</span>
-                              <ol class="mt-4 ps-3">
-                                <li>
-                                    Course attendance – 80%.
-                                </li>
-                                <li>
-                                  Final Project/Exam - 20%
-                                </li>
-                              </ol>
-                            </div>
-                          </div>*@
                           <div class="modal-box">
                             <h3>About</h3>
                             <div class="box-content">
@@ -415,7 +402,7 @@ Abdullah has a strong educational foundation in the creative arts, having gradua
                         <button
                           class="btn btn-secondary"
                           type="button"
-                          onclick=" showContent('modal-body-1')"
+                          onclick="showContent('modal-body-1')"
                         >
                           More
                         </button>
@@ -435,6 +422,7 @@ Abdullah has a strong educational foundation in the creative arts, having gradua
                   class="btn btn-secondary d-none d-md-inline"
                   data-bs-target="#modal1"
                   data-bs-toggle="modal"
+                  onclick="showContent('modal-body-1')"
                 >
                   More
                 </button>
@@ -504,6 +492,7 @@ Abdullah has a strong educational foundation in the creative arts, having gradua
                     class="btn btn-secondary d-inline d-md-none"
                     data-bs-target="#modal2"
                     data-bs-toggle="modal"
+                    onclick=" showContent('modal-body-2')"
                   >
                     More
                   </button>
@@ -879,6 +868,7 @@ Abdullah has a strong educational foundation in the creative arts, having gradua
                   class="btn btn-secondary d-none d-md-inline"
                   data-bs-target="#modal2"
                   data-bs-toggle="modal"
+                  onclick=" showContent('modal-body-2')"
                 >
                   More
                 </button>
@@ -948,6 +938,7 @@ Abdullah has a strong educational foundation in the creative arts, having gradua
                     class="btn btn-secondary d-inline d-md-none"
                     data-bs-target="#modal3"
                     data-bs-toggle="modal"
+                    onclick=" showContent('modal-body-3')"
                   >
                     More
                   </button>
@@ -1234,6 +1225,7 @@ Abdullah has a strong educational foundation in the creative arts, having gradua
                   class="btn btn-secondary d-none d-md-inline"
                   data-bs-target="#modal3"
                   data-bs-toggle="modal"
+                  onclick=" showContent('modal-body-3')"
                 >
                   More
                 </button>
@@ -1304,6 +1296,11 @@ Abdullah has a strong educational foundation in the creative arts, having gradua
 
 @section Scripts{
     <partial name="~/Views/Shared/_ValidationScriptsPartial.cshtml" />
+    <script>
+        $(".modal").on('hide.bs.modal', function(){
+            $(".modal-body").addClass("d-none");
+        });
+    </script>
 }
 
 <script src="https://www.google.com/recaptcha/api.js?render=6LcHKcclAAAAAJfXIruPiMttpiIoxc9gBOvATQmJ"></script>
@@ -1313,5 +1310,5 @@ Abdullah has a strong educational foundation in the creative arts, having gradua
                 $(".input-token").val(token);
             });
         });
-
+        
 </script>
