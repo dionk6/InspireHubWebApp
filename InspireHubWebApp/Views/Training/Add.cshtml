@@ -1,0 +1,62 @@
+﻿@using InspireHubWebApp.DTOs;
+@model TrainingDto
+
+@{
+    ViewData["Title"] = "Trajnimet";
+    ViewData["MenuNo"] = 2;
+    ViewData["HeaderNo"] = 1;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card shadow-sm">
+    <div class="card-header">
+        <h3 class="card-title">Shto Trajnimin</h3>
+    </div>
+    <div class="card-body">
+        <form asp-action="ShtoAktuale" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-lg-4 mb-5">
+                    <div class="form-group">
+                        <label class="form-label">Titulli</label>
+                        <input type="text" class="form-control" placeholder="Title" asp-for="Title" />
+                        <span class="text-danger" asp-validation-for="Title"></span>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-5">
+                    <label class="form-label">Data e Fillimit</label>
+                    <input type="text" placeholder="Data e Fillimit" id="startDate"  class="form-control datepickerInput" />
+                </div>
+                <div class="col-lg-4 mb-5">
+                    <label class="form-label">Data e Mbarimit</label>
+                    <input type="text" placeholder="Data e Fillimit" id="startDate"  class="form-control datepickerInput" />
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group mb-5">
+                        <label class="form-label">Foto e Instruktorit</label>
+                        <input type="file" class="form-control" asp-for="InstructorImage" />
+                        <span asp-validation-for="InstructorImage" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="d-flex justify-content-between mt-5">
+                        <button type="submit" class="btn btn-primary">Ruaj</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{ 
+    <script>
+        $(document).ready(function () {
+            $('.datepickerInput').datepicker({
+                weekStart: 1,
+                todayHighlight: true,
+                orientation: "bottom right",
+                format: 'dd/mm/yyyy',
+            });
+
+        });
+    </script>
+}

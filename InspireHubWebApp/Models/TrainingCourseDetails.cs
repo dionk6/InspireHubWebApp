@@ -7,5 +7,8 @@
         public int CourseDetailId { get; set; }
         public Training Training { get; set; }
         public CourseDetail CourseDetail { get; set; }
+        public int OrderNo { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime ModifiedDate { get; set; }
     }
 }
