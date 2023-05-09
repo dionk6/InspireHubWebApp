@@ -84,7 +84,7 @@ header .headerWrapper {
     flex-direction: row;
     align-items: center;
     border-radius: 10px;
-    z-index: 9999;
+    z-index: -1;
     display: flex;
     opacity: 0;
     transition: all 0.15s linear 0.15s;
@@ -92,6 +92,7 @@ header .headerWrapper {
 
 .alert-box.visible {
     opacity: 1;
+    z-index: 9999;
     transition: all 0.15s linear 0.15s;
 }
 
