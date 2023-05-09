@@ -64,26 +64,87 @@ header {
 }
 
 header .headerWrapper {
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
-background-color: transparent;
-padding: 58px 0px 83px 0px;
--webkit-transition: background-color 0.15s ease-in-out 0.15s;
--ms-transition: background-color 0.15s ease-in-out 0.15s;
-transition: background-color 0.15s ease-in-out 0.15s;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    padding: 58px 0px 83px 0px;
+    transition: background-color 0.15s ease-in-out 0.15s;
 }
+
+/* alert box ------ */
+
+.alert-box {
+    position: fixed;
+    width: 89.5%;
+    background-color: #29D197;
+    padding: 24px 35px;
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    border-radius: 10px;
+    z-index: 9999;
+}
+
+.alert-box .alert-content {
+    padding: 0 0 0 20px;
+    color: #021255;
+}
+
+.alert-box .alert-content p {
+    font-family: "Mont-bold";
+    font-size: 18px;
+    line-height: 23px;
+}
+
+.closeButton {
+    position: absolute;
+    top: 30px;
+    right: 35px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.closeButton span {
+    position: absolute;
+    display: block;
+    width: 16px;
+    height: 2px;
+    border-radius: 100px;
+    background-color: #021255;
+    transition: all 0.15s linear 0.15s;
+}
+
+.closeButton span:nth-child(1) {
+    top: 6px;
+}
+
+.closeButton span:nth-child(2) {
+    top: 14px;
+}
+
+
+.alert-box .closeButton span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+
+.alert-box .closeButton span:nth-child(2) {
+    transform: rotate(-45deg) translate(0px,0px);
+}
+
 
 header .headerWrapper .logo {
     width: 188px;
     height: 49px;
 }
 
-    header .headerWrapper .logo img {
-        width: 100%;
-        height: 100%;
-    }
+header .headerWrapper .logo img {
+    width: 100%;
+    height: 100%;
+}
 
 header .headerWrapper nav {
     display: flex;
@@ -733,6 +794,10 @@ footer {
 }
 
 @media only screen and (max-width: 990px) {
+    .alert-box {
+        width:95%;
+    }
+
     .modal-header {
         padding: 44px 18px 0px 18px;
     }
@@ -934,6 +999,16 @@ footer {
         width: 38px;
         height: 53px;
     }
+
+    .alert-box{
+        flex-direction:column;
+        justify-content:center;
+        text-align:center;
+    }
+
+    .alert-box .alert-content {
+        padding: 20px 0px 0 0;
+    }
 }
 
 @media only screen and (max-width: 576px) {
@@ -946,6 +1021,11 @@ footer {
         background-repeat: no-repeat;
         background-size: 190%;
     }
+
+    .alert-box {
+        width: 93.5%;
+    }
+
     .modal-body{
         padding:0px 0px 0px 0px;
     }
