@@ -1,8 +1,8 @@
 ﻿@using InspireHubWebApp.DTOs;
-@model List<TrainingDto>
+@model List<TrainingDetailDto>
 
 @{
-    ViewData["Title"] = "Trainings";
+    ViewData["Title"] = "Training Details";
     ViewData["MenuNo"] = 2;
     ViewData["HeaderNo"] = 1;
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -10,9 +10,9 @@
 
 <div class="card card-custom gutter-b example example-compact shadow-sm">
     <div class="card-header">
-        <h3 class="card-title">Trainings</h3>
+        <h3 class="card-title">Training Details</h3>
         <div class="card-toolbar">
-            <a asp-controller="Training" asp-action="Add" class="btn btn-secondary">
+            <a asp-controller="Training" asp-action="AddDetail" asp-route-id="@ViewBag.trainingId" class="btn btn-secondary">
                 Add
             </a>
         </div>
@@ -21,10 +21,9 @@
         <table id="tableData" class="table table-striped border rounded gy-5 gs-7 align-middle">
             <thead>
                 <tr class="fw-bolder fs-6 text-gray-800 px-7">
-                    <th>Title</th>
-                    <th>Instructor</th>
-                    <th>Price</th>
-                    <th>Training Dates</th>
+                    <th>Training</th>
+                    <th>Detail</th>
+                    <th>Date</th>
                     <th>Order No</th>
                     <th>Action</th>
                 </tr>
@@ -34,30 +33,24 @@
                 {
                     <tr>
                         <td>
-                            @item.Title
+                            @item.Training
                         </td>
                         <td>
-                            @item.Instructor
+                            @item.CourseDetail
                         </td>
                         <td>
-                            @item.Price €
-                        </td>
-                        <td>
-                            @item.TrainingDates
+                            @item.Date
                         </td>
                         <td>
                             @item.OrderNo
                         </td>
                         <td>
-                            <a asp-controller="Training" asp-action="Update" asp-route-id="@item.Id" style="margin-right: 5px;">
+                            <a asp-controller="Training" asp-action="UpdateDetail" asp-route-id="@item.Id" style="margin-right: 5px;">
                                 <i class="fas fa-edit text-primary"></i>
                             </a>
-                            <button type="button" class="deleteIcon" onclick="remove(@item.Id)" style="margin-right: 5px;">
+                            <button type="button" class="deleteIcon" onclick="remove(@item.Id)">
                                 <i class="fas fa-trash text-danger"></i>
                             </button>
-                            <a asp-controller="Training" asp-action="Details" asp-route-id="@item.Id">
-                                <i class="fas fa-list text-primary"></i>
-                            </a>
                         </td>
                     </tr>
                 }
@@ -80,7 +73,7 @@
                 cancelButtonText: 'Jo'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "/Training/DeleteTraining/" + id;
+                    window.location.href = "/Training/DeleteTrainingDetail/" + id;
                 }
             })
         }

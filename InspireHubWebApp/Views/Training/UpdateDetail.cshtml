@@ -1,0 +1,72 @@
+﻿@using InspireHubWebApp.DTOs;
+@model TrainingDetailDto
+
+@{
+    ViewData["Title"] = "Training Detail";
+    ViewData["MenuNo"] = 2;
+    ViewData["HeaderNo"] = 1;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card shadow-sm">
+    <div class="card-header">
+        <h3 class="card-title mb-0">Edit Training Detail</h3>
+    </div>
+    <div class="card-body">
+        <form asp-action="UpdateDetail" method="post">
+            <input type="hidden" asp-for="Id" value="@Model.Id" />
+            <input type="hidden" asp-for="TrainingId" value="@Model.TrainingId" />
+            <input type="hidden" asp-for="CourseDetailId" value="@Model.CourseDetailId" />
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="form-label">Title</label>
+                        <input type="text" class="form-control" placeholder="Title" disabled asp-for="Training" />
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>Course Detail</label>
+                        <input type="text" class="form-control" placeholder="Course Detail" disabled asp-for="CourseDetail" />
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>Order No</label>
+                        <input type="number" class="form-control" placeholder="Order No" asp-for="OrderNo" />
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea rows="8" class="form-control" id="kt-tinymce-1" asp-for="Description"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="d-flex justify-content-between mt-5">
+                        <a asp-controller="Training" asp-action="Details" asp-route-id="@Model.TrainingId" class="btn btn-danger">
+                            Back
+                        </a>
+                        <button type="submit" class="btn btn-primary">Ruaj</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="~/Views/Shared/_ValidationScriptsPartial.cshtml" />
+    <script>
+       
+        tinymce.init({
+            selector: '#kt-tinymce-1',
+            height: 400,
+            menubar: false,
+            toolbar: ['styleselect',
+                'undo redo | cut copy paste | bold italic underline forecolor backcolor | link | alignleft aligncenter alignright alignjustify',
+                'bullist numlist | outdent indent | blockquote subscript superscript | advlist | autolink | lists charmap | print preview |  code'],
+            plugins: 'advlist autolink link image lists charmap print preview code textcolor'
+        });
+    </script>
+}
