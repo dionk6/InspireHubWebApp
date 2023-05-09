@@ -1,0 +1,100 @@
+﻿@using InspireHubWebApp.DTOs;
+@model List<CategoryDto>
+
+@{
+    ViewData["Title"] = "Course Details";
+    ViewData["MenuNo"] = 2;
+    ViewData["HeaderNo"] = 2;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card card-custom gutter-b example example-compact shadow-sm">
+    <div class="card-header">
+        <h3 class="card-title">Course Details</h3>
+        <div class="card-toolbar">
+            <a asp-controller="Category" asp-action="Add" class="btn btn-secondary">
+                Add
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table id="tableData" class="table table-striped border rounded gy-5 gs-7 align-middle">
+            <thead>
+                <tr class="fw-bolder fs-6 text-gray-800 px-7">
+                    <th>Title</th>
+                    <th>Created Date</th>
+                    <th>Order No</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.Title
+                        </td>
+                        <td>
+                            @item.CreatedDate.Value.ToString("dd/MM/yyyy")
+                        </td>
+                        <td>
+                            @item.OrderNo
+                        </td>
+                        <td>
+                            <a asp-controller="Category" asp-action="Update" asp-route-id="@item.Id" style="margin-right: 5px;">
+                                <i class="fas fa-edit text-primary"></i>
+                            </a>
+                            <button type="button" class="deleteIcon" onclick="remove(@item.Id)">
+                                <i class="fas fa-trash text-danger"></i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function remove(id) {
+            Swal.fire({
+                title: 'A jeni te sigurt?',
+                text: "Nuk do të mund ta kthesh këtë!",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Po, fshije!',
+                cancelButtonText: 'Jo'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/Category/DeleteCategory/" + id;
+                }
+            })
+        }
+        $(document).ready(function () {
+            $("#tableData").DataTable({
+                "order": [],
+                "bInfo": false,
+                "responsive": true,
+                "language": {
+                    "lengthMenu": "Show _MENU_",
+                },
+                "dom":
+                    "<'row'" +
+                    "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+                    "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
+                    ">" +
+
+                    "<'table-responsive'tr>" +
+
+                    "<'row'" +
+                    "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                    "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                    ">"
+
+            });
+        });
+    </script>
+}

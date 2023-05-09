@@ -9,6 +9,9 @@ namespace InspireHubWebApp.DTOs
         {
             CreateMap<Training, TrainingDto>();
             CreateMap<TrainingDto, Training>();
+
+            CreateMap<CourseDetail, CategoryDto>();
+            CreateMap<CategoryDto, CourseDetail>();
         }
     }
 }

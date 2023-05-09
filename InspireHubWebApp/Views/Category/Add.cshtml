@@ -1,0 +1,44 @@
+﻿@using InspireHubWebApp.DTOs;
+@model CategoryDto
+
+@{
+    ViewData["Title"] = "Course Detail";
+    ViewData["MenuNo"] = 2;
+    ViewData["HeaderNo"] = 1;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card shadow-sm">
+    <div class="card-header">
+        <h3 class="card-title">Add Course Detail</h3>
+    </div>
+    <div class="card-body">
+        <form asp-action="Add" method="post">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-label">Title</label>
+                        <input type="text" class="form-control" placeholder="Title" asp-for="Title" />
+                        <span class="text-danger" asp-validation-for="Title"></span>
+                    </div>
+                </div>
+               
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-label">Order No</label>
+                        <input type="number" class="form-control"asp-for="OrderNo" placeholder="Order No" />
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="d-flex justify-content-between mt-5">
+                        <button type="submit" class="btn btn-primary">Ruaj</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{ 
+    <partial name="~/Views/Shared/_ValidationScriptsPartial.cshtml" />
+}
