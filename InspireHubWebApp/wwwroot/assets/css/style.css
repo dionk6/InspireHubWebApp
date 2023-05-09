@@ -78,14 +78,21 @@ header .headerWrapper {
 .alert-box {
     position: fixed;
     width: 89.5%;
-    top:60px;
+    top: 60px;
     background-color: #29D197;
     padding: 24px 35px;
-    display: flex;
-    flex-direction:row;
+    flex-direction: row;
     align-items: center;
     border-radius: 10px;
     z-index: 9999;
+    display: flex;
+    opacity: 0;
+    transition: all 0.15s linear 0.15s;
+}
+
+.alert-box.visible {
+    opacity: 1;
+    transition: all 0.15s linear 0.15s;
 }
 
 .alert-box .alert-content {

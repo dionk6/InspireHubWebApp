@@ -1360,6 +1360,12 @@ Abdullah has a strong educational foundation in the creative arts, having gradua
         $(".modal").on('hide.bs.modal', function(){
             $(".modal-body").addClass("d-none");
         });
+
+        $(".alert-box").addClass("visible");
+
+        $(".closeButton").click(function () {
+            $(".alert-box").removeClass("visible");
+        });
     </script>
 }
 
