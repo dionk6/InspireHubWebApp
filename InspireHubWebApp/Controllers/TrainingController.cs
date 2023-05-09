@@ -132,7 +132,7 @@ namespace InspireHubWebApp.Controllers
         {
             var courseDetails = _context.CourseDetail
                                   .Include(t => t.TrainingCourseDetails)
-                                  .Where(t => t.IsDeleted == false && t.TrainingCourseDetails.Select(x => x.TrainingId == id).Count() == 0)
+                                  .Where(t => t.IsDeleted == false && !t.TrainingCourseDetails.Any(x => x.TrainingId == id))
                                   .OrderBy(t => t.OrderNo)
                                   .ToList();
             ViewBag.courseDetails = new SelectList(courseDetails, "Id", "Title");
