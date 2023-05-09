@@ -22,9 +22,13 @@ namespace InspireHubWebApp.Controllers
             _reCaptchaService = reCaptchaService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int id = 0)
         {
             var contact = new Application();
+            if(id != 0)
+            {
+                TempData["id"] = id;
+            }
             return View(contact);
         }
 
@@ -52,7 +56,7 @@ namespace InspireHubWebApp.Controllers
                              $"Course: <b>{model.CourseTitle}</b> ";
             model.Message = message;
             await _emailService.SendEmailAsync(model);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new {id = 1});
         }
 
         [HttpPost]
