@@ -78,6 +78,7 @@ header .headerWrapper {
 .alert-box {
     position: fixed;
     width: 89.5%;
+    top:60px;
     background-color: #29D197;
     padding: 24px 35px;
     display: flex;
@@ -795,7 +796,7 @@ footer {
 
 @media only screen and (max-width: 990px) {
     .alert-box {
-        width:95%;
+        width:96%;
     }
 
     .modal-header {
@@ -1009,6 +1010,10 @@ footer {
     .alert-box .alert-content {
         padding: 20px 0px 0 0;
     }
+
+    .closeButton{
+        display:none;
+    }
 }
 
 @media only screen and (max-width: 576px) {
@@ -1022,12 +1027,12 @@ footer {
         background-size: 190%;
     }
 
-    .alert-box {
-        width: 93.5%;
+    .alert-box .alert-content p{
+        padding-bottom:10px;
     }
 
-    .modal-body{
-        padding:0px 0px 0px 0px;
+    .modal-body {
+        padding: 0px 0px 0px 0px;
     }
 
     .modal-body .modal-content-wrapper{
@@ -1121,9 +1126,9 @@ footer {
         padding: 46px 18px 56px 18px;
     }
 
-        .modal-footer-button .btn.btn-secondary {
-            padding: 10px 133px;
-        }
+    .modal-footer-button .btn.btn-secondary {
+        padding: 10px 133px;
+    }
 
     .modal-instructor-wrapper .instructor-details h4 {
         margin-bottom:7px;
@@ -1138,5 +1143,11 @@ footer {
         height: 14px;
         font-size:28px;
         color: #a7a7a7;
+    }
+}
+
+@media only screen and (max-width: 476px) {
+    .alert-box {
+        width: 93.5%;
     }
 }
