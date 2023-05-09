@@ -10,10 +10,14 @@
 
 <div class="card shadow-sm">
     <div class="card-header">
-        <h3 class="card-title">Add Training</h3>
+        <h3 class="card-title">Edit Training</h3>
     </div>
     <div class="card-body">
-        <form asp-action="Add" method="post" enctype="multipart/form-data">
+        <form asp-action="Update" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" value="@Model.Id" />
+            <input type="hidden" asp-for="CreatedDate" value="@Model.CreatedDate" />
+            <input type="hidden" asp-for="IsDeleted" value="@Model.IsDeleted" />
+            <input type="hidden" asp-for="InstructorImage" value="@Model.InstructorImage" />
             <div class="row">
                 <div class="col-lg-4">
                     <div class="form-group">
@@ -73,6 +77,9 @@
                         <span class="text-danger" asp-validation-for="ShortDescription"></span>
                     </div>
                 </div>
+                <div class="col-lg-12 text-center mb-5">
+                    <img src="@Model.InstructorImage" width="200" />
+                </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label class="form-label">Instructor</label>
@@ -90,14 +97,13 @@
                 <div class="col-lg-4">
                     <div class="form-group mb-5">
                         <label class="form-label">Instructor Image</label>
-                        <input type="file" class="form-control" asp-for="InstructorPhoto" />
-                        <span asp-validation-for="InstructorPhoto" class="text-danger"></span>
+                        <input type="file" class="form-control" asp-for="InstructorUpdatePhoto" />
                     </div>
                 </div>
                 <div class="col-lg-12">
                     <div class="form-group">
                         <label class="form-label">Instructor Bio</label>
-                        <textarea class="form-control" rows="6" asp-for="InstructorBio"></textarea>
+                        <textarea class="form-control" rows="8" asp-for="InstructorBio"></textarea>
                         <span class="text-danger" asp-validation-for="InstructorBio"></span>
                     </div>
                 </div>

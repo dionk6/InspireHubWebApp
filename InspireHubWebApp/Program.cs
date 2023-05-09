@@ -1,3 +1,4 @@
+using InspireHubWebApp.DTOs;
 using InspireHubWebApp.Interfaces;
 using InspireHubWebApp.Models;
 using InspireHubWebApp.Services;
@@ -25,9 +26,12 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 })
 .AddEntityFrameworkStores<DataContext>();
 
+builder.Services.AddAutoMapper(x => x.AddProfile(new MappingProfile()));
+
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IEmailService, EmailService>();
+builder.Services.AddScoped<IUploadService, UploadService>();
 builder.Services.AddTransient<reCaptchaService>();
 var app = builder.Build();
 

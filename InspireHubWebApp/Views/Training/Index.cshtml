@@ -2,7 +2,7 @@
 @model List<TrainingDto>
 
 @{
-    ViewData["Title"] = "Trajnimet";
+    ViewData["Title"] = "Trainings";
     ViewData["MenuNo"] = 2;
     ViewData["HeaderNo"] = 1;
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -10,10 +10,10 @@
 
 <div class="card card-custom gutter-b example example-compact shadow-sm">
     <div class="card-header">
-        <h3 class="card-title">Trajnimet</h3>
+        <h3 class="card-title">Trainings</h3>
         <div class="card-toolbar">
             <a asp-controller="Training" asp-action="Add" class="btn btn-secondary">
-                Shto
+                Add
             </a>
         </div>
     </div>
@@ -21,10 +21,11 @@
         <table id="tableData" class="table table-striped border rounded gy-5 gs-7 align-middle">
             <thead>
                 <tr class="fw-bolder fs-6 text-gray-800 px-7">
-                    <th>Titulli</th>
-                    <th>Instruktori</th>
-                    <th>Çmimi</th>
-                    <th>Data e Krijimit</th>
+                    <th>Title</th>
+                    <th>Instructor</th>
+                    <th>Price</th>
+                    <th>Training Dates</th>
+                    <th>Order No</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -42,10 +43,13 @@
                             @item.Price €
                         </td>
                         <td>
-                            @item.CreateDate
+                            @item.TrainingDates
                         </td>
                         <td>
-                            <a asp-controller="AdminAktuale" asp-action="NdryshoAktuale" asp-route-id="@item.Id" style="margin-right: 5px;">
+                            @item.OrderNo
+                        </td>
+                        <td>
+                            <a asp-controller="Training" asp-action="Update" asp-route-id="@item.Id" style="margin-right: 5px;">
                                 <i class="fas fa-edit text-primary"></i>
                             </a>
                             <button type="button" class="deleteIcon" onclick="remove(@item.Id)">
@@ -73,7 +77,7 @@
                 cancelButtonText: 'Jo'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "/AdminAktuale/FshijAktuale/" + id;
+                    window.location.href = "/Training/DeleteTraining/" + id;
                 }
             })
         }

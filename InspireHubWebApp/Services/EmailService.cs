@@ -15,7 +15,7 @@ namespace InspireHubWebApp.Services
 
             message.To.Add(MailboxAddress.Parse("hello@inspirehub.info"));
 
-            //message.ReplyTo.Add(MailboxAddress.Parse(contact.Email));
+            message.ReplyTo.Add(MailboxAddress.Parse(contact.Email));
 
             message.Subject = "Inspire Hub - "+contact.CourseTitle;
             //message.HtmlBody = contact.Message;
