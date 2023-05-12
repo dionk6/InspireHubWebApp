@@ -1,0 +1,71 @@
+﻿@using InspireHubWebApp.DTOs;
+@model Application
+
+<form asp-action="SendApplication" method="post">
+<input class="input-token" type="hidden" asp-for="@Model.token" />
+    <input type="hidden" asp-for="@Model.CourseTitle" value="@Model.CourseTitle" />
+    <div class="row">
+        <div class="col-md-6">
+        <label for="exampleInputName" class="form-label"
+            >First Name:</label
+        >
+        <input
+            type="text"
+            asp-for="@Model.FirstName"
+            class="form-control"
+            style="height: 52px"
+        />
+        <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+        <label
+            for="exampleInputSurname"
+            class="form-label"
+            >Last Name:</label
+        >
+        <input
+            type="text"
+            class="form-control"
+            asp-for="@Model.LastName"
+            style="height: 52px"
+        />
+        <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+        <label
+            for="exampleInputEmail"
+            class="form-label"
+            >Email:</label
+        >
+        <input
+            type="email"
+            class="form-control"
+            asp-for="@Model.Email"
+            style="height: 52px"
+        />
+        <span asp-validation-for="@Model.Email" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+        <label
+            for="exampleInputPhoneNumber"
+            class="form-label"
+            >Phone Number:</label
+        >
+        <input
+            type="text"
+            class="form-control"
+            asp-for="@Model.Phone"
+            style="height: 52px"
+        />
+        <span asp-validation-for="@Model.Phone" class="text-danger"></span>
+        </div>
+        <div class="col-12">
+
+        <button type="submit" class="btn btn-primary">
+            Apply
+        </button>
+        </div>
+    </div>
+</form>

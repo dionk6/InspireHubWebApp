@@ -3,6 +3,7 @@ using InspireHubWebApp.Interfaces;
 using InspireHubWebApp.Models;
 using InspireHubWebApp.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace InspireHubWebApp.Controllers
@@ -12,24 +13,66 @@ namespace InspireHubWebApp.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IEmailService _emailService;
         private readonly reCaptchaService _reCaptchaService;
+        private readonly DataContext _context;
 
         public HomeController(ILogger<HomeController> logger,
                               IEmailService emailService,
-                              reCaptchaService reCaptchaService)
+                              reCaptchaService reCaptchaService,
+                              DataContext context)
         {
             _logger = logger;
             _emailService = emailService;
             _reCaptchaService = reCaptchaService;
+            _context = context;
         }
 
-        public async Task<IActionResult> Index(int id = 0)
+        public async Task<IActionResult> Index()
         {
             var contact = new Application();
-            if(id != 0)
-            {
-                TempData["id"] = id;
-            }
-            return View(contact);
+
+            var model = _context.Training
+                            .AsNoTracking()
+                            .Include(t => t.TrainingCourseDetails)
+                                .ThenInclude(t => t.CourseDetail)
+                            .Where(t => t.IsDeleted == false)
+                            .Select(t => new TrainingView
+                            {
+                                Id = t.Id,
+                                Title = t.Title,
+                                Dates = t.StartDate.ToString("dd MMMM yyyy")+" - "+t.EndDate.ToString("dd MMMM yyyy"),
+                                Hours = t.Hours,
+                                Days = t.Days,
+                                Price = Decimal.Round(t.Price - t.DiscountPrice),
+                                ShortDescription = t.ShortDescription,
+                                ApplicationDeadline = t.ApplicationDeadline,
+                                CourseDetails = t.TrainingCourseDetails
+                                                    .Select(x => new CourseDetailDto
+                                                    {
+                                                        Title = x.CourseDetail.Title,
+                                                        Description = x.Description,
+                                                        OrderNo = x.OrderNo,
+                                                    })
+                                                    .OrderBy(x => x.OrderNo)
+                                                    .ToList(),
+                                Instructor = t.Instructor,
+                                InstructorPosition = t.InstructorPosition,
+                                InstructorImage = t.InstructorImage,
+                                InstructorBio = t.InstructorBio,
+                                FacebookUrl = t.FacebookUrl,
+                                InstagramUrl = t.InstagramUrl,
+                                BehanceUrl = t.BehanceUrl,
+                                DribbbleUrl = t.DribbbleUrl,
+                                LinkedinUrl = t.LinkedinUrl,
+                                Application = new Application
+                                {
+                                    CourseTitle = t.Title
+                                },
+                                OrderNo = t.OrderNo
+                            })
+                            .OrderBy(x => x.OrderNo)
+                            .ToList();
+
+            return View(model);
         }
 
         [HttpPost]
@@ -56,7 +99,8 @@ namespace InspireHubWebApp.Controllers
                              $"Course: <b>{model.CourseTitle}</b> ";
             model.Message = message;
             await _emailService.SendEmailAsync(model);
-            return RedirectToAction("Index", new {id = 1});
+            TempData["id"] = 1;
+            return RedirectToAction("Index");
         }
 
         [HttpPost]

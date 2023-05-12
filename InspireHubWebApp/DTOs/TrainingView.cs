@@ -10,7 +10,7 @@
         public decimal Price { get; set; }
         public string ShortDescription { get; set; }
         public string ApplicationDeadline { get; set; }
-        public List<CourseDetail> CourseDetails { get; set; }
+        public List<CourseDetailDto> CourseDetails { get; set; }
         public string Instructor { get; set; }
         public string InstructorPosition { get; set; }
         public string InstructorImage { get; set; }
@@ -20,10 +20,13 @@
         public string BehanceUrl { get; set; }
         public string DribbbleUrl { get; set; }
         public string LinkedinUrl { get; set; }
+        public Application Application { get; set; }
+        public int OrderNo { get; set; }
     }
-    public class CourseDetail
+    public class CourseDetailDto
     {
         public string Title { get; set; }
         public string Description { get; set; }
+        public int OrderNo { get; set; }
     }
 }

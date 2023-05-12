@@ -1,0 +1,62 @@
+﻿@using InspireHubWebApp.DTOs;
+@model Application
+
+<section id="contact-section" class="contact-section">
+    <div class="row">
+        <div class="col-12 col-md-5">
+        <div class="contact-info">
+            <h2>Contact us <br />for more <br />information</h2>
+            <ul>
+            <li>
+                <img src="~/assets/images/icons/phoneIcon.svg" alt="" />
+                <a href="#">+383 49 578 989</a>
+            </li>
+            <li>
+                <img src="~/assets/images/icons/emailIcon.svg" alt="" />
+                <a href="#"> hello@inspirehub.info </a>
+            </li>
+            </ul>
+        </div>
+        </div>
+        <div class="col-12 col-md-7">
+        <div class="form-wrapper">
+            <form asp-action="SendContact" method="post">
+                <input class="input-token" type="hidden" asp-for="@Model.token" />
+            <div class="row">
+                <div class="col-md-6">
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Name"
+                    asp-for="@Model.FirstName"
+                    style="height: 58px"
+                />
+                <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Email"
+                    asp-for="@Model.Email"
+                    style="height: 58px"
+                />
+                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                <textarea
+                    class="form-control"
+                    placeholder="Your Message"
+                    asp-for="@Model.Message"
+                    style="height: 141px"
+                ></textarea>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-secondary">
+                Send Message
+            </button>
+            </form>
+        </div>
+        </div>
+    </div>
+</section>
