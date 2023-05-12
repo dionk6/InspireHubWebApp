@@ -29,7 +29,7 @@
         <div class="cards-wrapper col-12">
         @foreach(var item in Model)
         {
-            <div class="training-card col-12 col-md-10 col-sm-12 row">
+            <div class="training-card col-12 col-md-10 col-sm-12 row" id="@item.Title.Replace(" ","-")">
               <div class="avatar-info col-12 col-md-5 p-0">
                 <img src="@("https://inspirehub.info/"+item.InstructorImage)" class="avatar-image" alt="@item.Instructor Photo" />
                 <div class="avatar-detail">
