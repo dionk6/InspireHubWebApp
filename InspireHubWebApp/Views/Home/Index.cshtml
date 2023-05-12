@@ -145,7 +145,11 @@
                 <ul>
                   <li>@item.Hours</li>
                   <li>@item.Days</li>
-                  <li><strong>Price: @item.Price €</strong></li>
+                    @if(item.FinalPrice > 0){
+                        <li>Price: <del>@item.Price</del> <strong>@item.FinalPrice Euro</strong></li>
+                    }else{
+                        <li>Price: <strong>@item.Price Euro</strong></li>
+                    }
                 </ul>
                 <div class="button-wrapper">
                   <div class="modal fade modal-xl" id="@("modal"+item.Id)" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
@@ -166,7 +170,11 @@
                             </p>
                           </div>
                           <div class="modal-header-box">
-                            <p>Price: <strong>@item.Price Euro</strong></p>
+                              @if(item.FinalPrice > 0){
+                                <p>Price: <del>@item.Price</del> <strong>@item.FinalPrice Euro</strong></p>
+                              }else{
+                                <p>Price: <strong>@item.Price Euro</strong></p>
+                              }
                             <p>Application Deadline: <strong>@item.ApplicationDeadline</strong></p>
                           </div>
                         </div>

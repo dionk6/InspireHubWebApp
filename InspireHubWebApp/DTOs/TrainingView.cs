@@ -8,6 +8,7 @@
         public string Hours { get; set; }
         public string Days { get; set; }
         public decimal Price { get; set; }
+        public decimal FinalPrice { get; set; }
         public string ShortDescription { get; set; }
         public string ApplicationDeadline { get; set; }
         public List<CourseDetailDto> CourseDetails { get; set; }

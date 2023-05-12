@@ -26,6 +26,7 @@
                     <th>Price</th>
                     <th>Training Dates</th>
                     <th>Order No</th>
+                    <th>Show</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -47,6 +48,14 @@
                         </td>
                         <td>
                             @item.OrderNo
+                        </td>
+                        <td>
+                            <span class="switch switch-primary">
+				                <label>
+					                <input type="checkbox" class="checkActive" value="@item.Id" @(item.Show == true ? "checked" : "")/>
+					                <span></span>
+				                </label>
+			                </span>
                         </td>
                         <td>
                             <a asp-controller="Training" asp-action="Update" asp-route-id="@item.Id" style="margin-right: 5px;">
@@ -85,6 +94,31 @@
             })
         }
         $(document).ready(function () {
+            $('#tableData').on('change', '.checkActive', function () {
+                var IsChecked = false;
+                if (this.checked) {
+                    IsChecked = true;
+                } else {
+                    IsChecked = false;
+                }
+                var _id = $(this).attr("value");
+                $.ajax({
+                    type: 'GET',
+                    url: '/Training/ShowTraining',
+                    data: { id: _id, isActive: IsChecked },
+                    cache: false,
+                    success: function (result) {
+                        Swal.fire({
+                            //position: 'top-end',
+                            icon: 'success',
+                            title: result,
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                    }
+                });
+            });
+
             $("#tableData").DataTable({
                 "order": [],
                 "bInfo": false,

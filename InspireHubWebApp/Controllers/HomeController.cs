@@ -34,7 +34,7 @@ namespace InspireHubWebApp.Controllers
                             .AsNoTracking()
                             .Include(t => t.TrainingCourseDetails)
                                 .ThenInclude(t => t.CourseDetail)
-                            .Where(t => t.IsDeleted == false)
+                            .Where(t => t.IsDeleted == false && t.Show == true)
                             .Select(t => new TrainingView
                             {
                                 Id = t.Id,
@@ -42,7 +42,8 @@ namespace InspireHubWebApp.Controllers
                                 Dates = t.StartDate.ToString("dd MMMM yyyy")+" - "+t.EndDate.ToString("dd MMMM yyyy"),
                                 Hours = t.Hours,
                                 Days = t.Days,
-                                Price = Decimal.Round(t.Price - t.DiscountPrice),
+                                Price = Decimal.Round(t.Price),
+                                FinalPrice = t.DiscountPrice > 0 ? Decimal.Round(t.Price - t.DiscountPrice) : 0,
                                 ShortDescription = t.ShortDescription,
                                 ApplicationDeadline = t.ApplicationDeadline,
                                 CourseDetails = t.TrainingCourseDetails
@@ -65,6 +66,7 @@ namespace InspireHubWebApp.Controllers
                                 LinkedinUrl = t.LinkedinUrl,
                                 Application = new Application
                                 {
+                                    TrainingId = t.Id,
                                     CourseTitle = t.Title
                                 },
                                 OrderNo = t.OrderNo
@@ -85,6 +87,18 @@ namespace InspireHubWebApp.Controllers
                 //ModelState.AddModelError(string.Empty, "You are not a human.");
                 return RedirectToAction("Index");
             }
+
+            var newStudent = new Student();
+            newStudent.TrainingId = model.TrainingId.Value;
+            newStudent.FirstName = model.FirstName;
+            newStudent.LastName = model.LastName;
+            newStudent.Email = model.Email;
+            newStudent.Phone = model.Phone;
+            newStudent.IsDeleted = false;
+            newStudent.CreateDate = DateTime.Now;
+
+            _context.Students.Add(newStudent);
+            await _context.SaveChangesAsync();
 
             var message = $"Hello," +
                              $"<br /> <br />" +

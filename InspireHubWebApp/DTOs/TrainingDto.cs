@@ -35,6 +35,7 @@ namespace InspireHubWebApp.DTOs
         public string? DribbbleUrl { get; set; }
         public string? LinkedinUrl { get; set; }
         public int? OrderNo { get; set; }
+        public bool? Show { get; set; }
         public bool? IsDeleted { get; set; }
         public string? TrainingDates { get; set; }
         public DateTime? CreatedDate { get; set; }

@@ -4,6 +4,7 @@ namespace InspireHubWebApp.DTOs
 {
     public class Application
     {
+        public int? TrainingId { get; set; }
         public string? CourseTitle { get; set; }
         [Required(ErrorMessage = "First Name is required")]
         public string? FirstName { get; set; }

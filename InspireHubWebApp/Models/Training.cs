@@ -22,6 +22,7 @@
         public string? DribbbleUrl { get; set; }
         public string? LinkedinUrl { get; set; }
         public int OrderNo { get; set; }
+        public bool? Show { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }

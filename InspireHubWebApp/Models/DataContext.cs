@@ -18,6 +18,6 @@ namespace InspireHubWebApp.Models
         public DbSet<Training> Training { get; set; }
         public DbSet<CourseDetail> CourseDetail { get; set; }
         public DbSet<TrainingCourseDetails> TrainingCourseDetails { get; set; }
-
+        public DbSet<Student> Students { get; set; }
     }
 }

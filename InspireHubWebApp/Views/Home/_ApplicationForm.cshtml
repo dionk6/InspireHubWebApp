@@ -2,7 +2,8 @@
 @model Application
 
 <form asp-action="SendApplication" method="post">
-<input class="input-token" type="hidden" asp-for="@Model.token" />
+    <input class="input-token" type="hidden" asp-for="@Model.token" />
+    <input type="hidden" asp-for="@Model.TrainingId" value="@Model.TrainingId" />
     <input type="hidden" asp-for="@Model.CourseTitle" value="@Model.CourseTitle" />
     <div class="row">
         <div class="col-md-6">

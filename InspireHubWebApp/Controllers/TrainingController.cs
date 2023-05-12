@@ -35,7 +35,8 @@ namespace InspireHubWebApp.Controllers
                                     Instructor = t.Instructor,
                                     Price = Decimal.Round(t.Price - t.DiscountPrice),
                                     OrderNo = t.OrderNo,
-                                    TrainingDates = t.StartDate.ToString("dd MMMM yyyy")+" - "+t.EndDate.ToString("dd MMMM yyyy")
+                                    TrainingDates = t.StartDate.ToString("dd MMMM yyyy")+" - "+t.EndDate.ToString("dd MMMM yyyy"),
+                                    Show = t.Show
                                 })
                                 .ToList();
             return View(model);
@@ -58,6 +59,7 @@ namespace InspireHubWebApp.Controllers
             model.EndDate = DateTime.ParseExact(dtoModel.EndDateString, "dd/MM/yyyy", null);
             model.CreatedDate = DateTime.Now;
             model.IsDeleted = false;
+            model.Show = true;
 
             _context.Training.Add(model);
             await _context.SaveChangesAsync();
@@ -208,7 +210,15 @@ namespace InspireHubWebApp.Controllers
             return RedirectToAction("Details", new { id = model.TrainingId });
         }
 
-        
+        public async Task<string> ShowTraining(int id,bool isActive)
+        {
+            var model = _context.Training.Find(id);
+            model.Show = isActive;
+            _context.Training.Update(model);
+            await _context.SaveChangesAsync();
+
+            return model.Title + (isActive == true ? " is shown" : " is hidden");
+        }
 
     }
 }
