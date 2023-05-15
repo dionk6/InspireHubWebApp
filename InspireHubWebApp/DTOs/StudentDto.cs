@@ -1,5 +1,10 @@
 ﻿namespace InspireHubWebApp.DTOs
 {
+    public class StudentListDto
+    {
+        public int TrainingId { get; set; }
+        public List<StudentDto> Students { get; set; }
+    }
     public class StudentDto
     {
         public int Id { get; set; }

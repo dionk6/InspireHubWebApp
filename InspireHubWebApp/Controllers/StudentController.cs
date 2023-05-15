@@ -20,11 +20,12 @@ namespace InspireHubWebApp.Controllers
             _context = context;
             _mapper = mapper;
         }
-        public IActionResult Index()
+        public IActionResult Index(int id = 0)
         {
-            var model = _context.Students
+            var model = new StudentListDto();
+            var students = _context.Students
                             .Include(t => t.Training)
-                            .Where(t => t.IsDeleted == false)
+                            .Where(t => t.IsDeleted == false && (id == 0 ? t.Id > 0 : t.TrainingId == id))
                             .Select(t => new StudentDto
                             {
                                 Id = t.Id,
@@ -40,6 +41,14 @@ namespace InspireHubWebApp.Controllers
                             })
                             .OrderByDescending(t => t.CreatedDate)
                             .ToList();
+            model.Students = students;
+            var trainings = _context.Training
+                                .Where(t => t.IsDeleted == false)
+                                .OrderBy(t => t.OrderNo)
+                                .ToList();
+
+            ViewBag.trainings = new SelectList(trainings, "Id", "Title");
+            model.TrainingId = id;
             return View(model);
         }
 

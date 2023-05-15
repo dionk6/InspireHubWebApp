@@ -1,5 +1,5 @@
 ﻿@using InspireHubWebApp.DTOs;
-@model List<StudentDto>
+@model StudentListDto
 
 @{
     ViewData["Title"] = "Students";
@@ -18,6 +18,23 @@
         </div>
     </div>
     <div class="card-body">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label>Training</label>
+                    <select asp-for="TrainingId" asp-items="ViewBag.trainings" class="form-control select2">
+                        <option value="0">All</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-5 d-flex flex-column justify-content-end">
+                <div class="form-group mb-2">
+                    <button type="button" class="btn btn-primary" onclick="search()">
+                        Search
+                    </button>
+                </div>
+            </div>
+        </div>
         <table id="tableData" class="table rounded gy-5 gs-7 align-middle">
             <thead>
                 <tr class="fw-bolder fs-6 text-gray-800 px-7">
@@ -31,7 +48,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach(var item in Model)
+                @foreach(var item in Model.Students)
                 {
                     <tr>
                         <td class="datatable-cell">
@@ -75,6 +92,10 @@
 
 @section Scripts {
     <script>
+        function search(){
+            var trainingId = document.getElementById("TrainingId").value;
+            window.location.href = "/Student/Index/" + trainingId;
+        }
         function remove(id) {
             Swal.fire({
                 title: 'A jeni te sigurt?',
@@ -92,6 +113,8 @@
             })
         }
         $(document).ready(function () {
+            $('.select2').select2({
+		    });
             $('#tableData').on('click', '.approveStudent', function () {
                 var _id = $(this).attr("value");
                 $("#confirm-"+_id).removeClass("d-none");
