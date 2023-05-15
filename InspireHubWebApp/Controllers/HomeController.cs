@@ -67,7 +67,8 @@ namespace InspireHubWebApp.Controllers
                                 Application = new Application
                                 {
                                     TrainingId = t.Id,
-                                    CourseTitle = t.Title
+                                    CourseTitle = t.Title,
+                                    Price = Decimal.Round(t.Price - t.DiscountPrice)
                                 },
                                 OrderNo = t.OrderNo
                             })
@@ -94,6 +95,8 @@ namespace InspireHubWebApp.Controllers
             newStudent.LastName = model.LastName;
             newStudent.Email = model.Email;
             newStudent.Phone = model.Phone;
+            newStudent.Price = model.Price.Value;
+            newStudent.IsConfirmed = false;
             newStudent.IsDeleted = false;
             newStudent.CreateDate = DateTime.Now;
 

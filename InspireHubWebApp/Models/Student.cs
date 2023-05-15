@@ -8,6 +8,8 @@
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+        public decimal Price { get; set; }
+        public bool IsConfirmed { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime CreateDate { get; set; }
         public Training Training { get; set; }

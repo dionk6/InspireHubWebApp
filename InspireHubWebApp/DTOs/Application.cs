@@ -6,6 +6,7 @@ namespace InspireHubWebApp.DTOs
     {
         public int? TrainingId { get; set; }
         public string? CourseTitle { get; set; }
+        public decimal? Price { get; set; }
         [Required(ErrorMessage = "First Name is required")]
         public string? FirstName { get; set; }
         [Required(ErrorMessage = "Last Name is required")]

@@ -1,0 +1,140 @@
+﻿@using InspireHubWebApp.DTOs;
+@model List<StudentDto>
+
+@{
+    ViewData["Title"] = "Students";
+    ViewData["MenuNo"] = 3;
+    ViewData["HeaderNo"] = 1;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card card-custom gutter-b example example-compact shadow-sm">
+    <div class="card-header">
+        <h3 class="card-title">Students</h3>
+        <div class="card-toolbar">
+            <a asp-controller="Student" asp-action="Add" class="btn btn-secondary">
+                Add
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table id="tableData" class="table rounded gy-5 gs-7 align-middle">
+            <thead>
+                <tr class="fw-bolder fs-6 text-gray-800 px-7">
+                    <th>Student</th>
+                    <th>Phone</th>
+                    <th>Training</th>
+                    <th>Price</th>
+                    <th>Date Applied</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td class="datatable-cell">
+                            <div class="d-flex align-items-center">								
+                                <div class="symbol symbol-40 symbol-success flex-shrink-0">									
+                                    <div class="symbol-label">@item.FirstName[0]</div>								
+                                </div>								
+                                <div class="ml-2">									
+                                    <div class="text-dark-75 font-weight-bold line-height-sm">@item.FirstName @item.LastName</div>									
+                                    <a href="#" class="font-size-sm text-dark-50 text-hover-primary">@item.Email</a>								
+                                </div>							
+                            </div>
+                        </td>
+                        <td>@item.Phone</td>
+                        <td>@item.Training</td>
+                        <td>@item.Price €</td>
+                        <td>@item.DateApplied</td>
+                        <td>
+                            <span class="label font-weight-bold label-lg label-light-success label-inline @(item.Status != true ? "d-none":"")" id="confirm-@item.Id">Confirmed</span>
+                            <span class="label font-weight-bold label-lg label-light-danger label-inline @(item.Status == true ? "d-none":"")" id="pending-@item.Id">Pending</span>
+                        </td>
+                        <td>
+                            @if(!item.Status){
+                                <button type="button" class="approveStudent" value="@item.Id" style="margin-right: 5px;background: none;border: 0;">
+                                    <i class="flaticon2-check-mark text-success"></i>
+                                </button>
+                            }
+                            <a asp-controller="Student" asp-action="Update" asp-route-id="@item.Id" style="margin-right: 5px;">
+                                <i class="fas fa-edit text-primary"></i>
+                            </a>
+                            <button type="button" class="deleteIcon" onclick="remove(@item.Id)">
+                                <i class="fas fa-trash text-danger"></i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function remove(id) {
+            Swal.fire({
+                title: 'A jeni te sigurt?',
+                text: "Nuk do të mund ta kthesh këtë!",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Po, fshije!',
+                cancelButtonText: 'Jo'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/Student/DeleteStudent/" + id;
+                }
+            })
+        }
+        $(document).ready(function () {
+            $('#tableData').on('click', '.approveStudent', function () {
+                var _id = $(this).attr("value");
+                $("#confirm-"+_id).removeClass("d-none");
+                $("#pending-"+_id).addClass("d-none");
+                $(this).addClass("d-none");
+                $.ajax({
+                    type: 'GET',
+                    url: '/Student/ApproveStudent',
+                    data: { id: _id },
+                    cache: false,
+                    success: function (result) {
+                        Swal.fire({
+                            //position: 'top-end',
+                            icon: 'success',
+                            title: result,
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                    }
+                });
+            });
+
+            $("#tableData").DataTable({
+                "order": [],
+                "bInfo": false,
+                "responsive": true,
+                "language": {
+                    "lengthMenu": "Show _MENU_",
+                },
+                "dom":
+                    "<'row'" +
+                    "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+                    "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
+                    ">" +
+
+                    "<'table-responsive'tr>" +
+
+                    "<'row'" +
+                    "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                    "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                    ">"
+
+            });
+        });
+    </script>
+}
