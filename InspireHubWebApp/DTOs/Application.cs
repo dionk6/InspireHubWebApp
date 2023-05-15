@@ -4,6 +4,7 @@ namespace InspireHubWebApp.DTOs
 {
     public class Application
     {
+        public int? Id { get; set; }
         public int? TrainingId { get; set; }
         public string? CourseTitle { get; set; }
         public decimal? Price { get; set; }
@@ -18,5 +19,8 @@ namespace InspireHubWebApp.DTOs
         public string? Message { get; set; }
         [Required]
         public string token { get; set; }
+        public DateTime CreateDate { get; set; }
+        public bool IsConfirmed { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

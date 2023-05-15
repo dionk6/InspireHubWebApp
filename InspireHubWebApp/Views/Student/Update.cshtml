@@ -10,10 +10,15 @@
 
 <div class="card shadow-sm">
     <div class="card-header">
-        <h3 class="card-title mb-0">Add Student</h3>
+        <h3 class="card-title mb-0">Update Student</h3>
     </div>
     <div class="card-body">
-        <form asp-action="Add" method="post" enctype="multipart/form-data">
+        <form asp-action="Update" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="@Model.Id" value="@Model.Id" />
+            <input type="hidden" asp-for="@Model.TrainingId" value="@Model.TrainingId" />
+            <input type="hidden" asp-for="@Model.CreateDate" value="@Model.CreateDate" />
+            <input type="hidden" asp-for="@Model.Price" value="@Model.Price" />
+            <input type="hidden" asp-for="@Model.IsDeleted" value="@Model.IsDeleted" />
             <div class="row">
                 <div class="col-lg-6">
                     <div class="form-group">
@@ -43,11 +48,27 @@
                         <span class="text-danger" asp-validation-for="Phone"></span>
                     </div>
                 </div>
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <div class="form-group">
                         <label>Training</label>
-                        <select asp-items="ViewBag.trainings" class="form-control select2" asp-for="TrainingId">
-                        </select>
+                        <input type="text" class="form-control" disabled value="@Model.CourseTitle" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Price</label>
+                        <input type="number" class="form-control" disabled value="@Model.Price" />
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label>Is Confirmed</label>
+                        <span class="switch switch-outline switch-icon switch-success">
+				            <label>
+					            <input type="checkbox" asp-for="IsConfirmed" />
+					            <span></span>
+				            </label>
+			            </span>
                     </div>
                 </div>
                 <div class="col-lg-12">
@@ -62,8 +83,4 @@
 
 @section Scripts{ 
     <partial name="~/Views/Shared/_ValidationScriptsPartial.cshtml" />
-    <script>
-        $('.select2').select2({
-		});
-    </script>
 }

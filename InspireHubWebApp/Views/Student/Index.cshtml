@@ -54,17 +54,17 @@
                             <span class="label font-weight-bold label-lg label-light-danger label-inline @(item.Status == true ? "d-none":"")" id="pending-@item.Id">Pending</span>
                         </td>
                         <td>
-                            @if(!item.Status){
-                                <button type="button" class="approveStudent" value="@item.Id" style="margin-right: 5px;background: none;border: 0;">
-                                    <i class="flaticon2-check-mark text-success"></i>
-                                </button>
-                            }
                             <a asp-controller="Student" asp-action="Update" asp-route-id="@item.Id" style="margin-right: 5px;">
                                 <i class="fas fa-edit text-primary"></i>
                             </a>
                             <button type="button" class="deleteIcon" onclick="remove(@item.Id)">
                                 <i class="fas fa-trash text-danger"></i>
                             </button>
+                            @if(!item.Status){
+                                <button type="button" class="approveStudent" value="@item.Id" style="margin-right: 5px;background: none;border: 0;">
+                                    <i class="flaticon2-check-mark text-success"></i>
+                                </button>
+                            }
                         </td>
                     </tr>
                 }

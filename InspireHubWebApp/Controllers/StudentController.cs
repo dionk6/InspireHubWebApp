@@ -96,5 +96,27 @@ namespace InspireHubWebApp.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Update(int id)
+        {
+            var model = _context.Students
+                            .Include(t => t.Training)
+                            .First(t => t.Id == id);
+            var dto = _mapper.Map<Application>(model);
+            dto.CourseTitle = model.Training.Title;
+
+            return View(dto);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(Application dto)
+        {
+            var model = _mapper.Map<Student>(dto);
+
+            _context.Students.Update(model);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+
     }
 }
