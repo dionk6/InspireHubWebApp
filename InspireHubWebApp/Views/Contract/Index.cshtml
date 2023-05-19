@@ -1,0 +1,124 @@
+﻿@model List<Contract>
+
+@{
+    ViewData["Title"] = "Contracts";
+    ViewData["MenuNo"] = 4;
+    ViewData["HeaderNo"] = 1;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card card-custom gutter-b example example-compact shadow-sm">
+    <div class="card-header">
+        <h3 class="card-title">Contracts</h3>
+        <div class="card-toolbar">
+            <a asp-controller="Contract" asp-action="Add" class="btn btn-secondary">
+                Add
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        @*<div class="row">
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label>Training</label>
+                    <select asp-for="TrainingId" asp-items="ViewBag.trainings" class="form-control select2">
+                        <option value="0">All</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-5 d-flex flex-column justify-content-end">
+                <div class="form-group mb-2">
+                    <button type="button" class="btn btn-primary" onclick="search()">
+                        Search
+                    </button>
+                </div>
+            </div>
+        </div>*@
+        <table id="tableData" class="table rounded gy-5 gs-7 align-middle">
+            <thead>
+                <tr class="fw-bolder fs-6 text-gray-800 px-7">
+                    <th>Personal Number</th>
+                    <th>Fullname</th>
+                    <th>Contract Date</th>
+                    <th>Address</th>
+                    <th>Price</th>
+                    <th>Range Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>@item.PersonalNumber</td>
+                        <td>@item.FirstName @item.LastName</td>
+                        <td>@item.ContractDate</td>
+                        <td>@item.Address</td>
+                        <td>@item.Price €</td>
+                        <td>@item.StartDate - @item.EndDate</td>
+                        <td>
+                            <a target="_blank" asp-controller="Contract" asp-action="PrintContract" asp-route-id="@item.Id" style="margin-right: 7px;">
+                                <i class="fas fa-print text-success"></i>
+                            </a>
+                            <a asp-controller="Contract" asp-action="Update" asp-route-id="@item.Id" style="margin-right: 5px;">
+                                <i class="fas fa-edit text-primary"></i>
+                            </a>
+                            <button type="button" class="deleteIcon" onclick="remove(@item.Id)">
+                                <i class="fas fa-trash text-danger"></i>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        //function search(){
+        //    var trainingId = document.getElementById("TrainingId").value;
+        //    window.location.href = "/Student/Index/" + trainingId;
+        //}
+        function remove(id) {
+            Swal.fire({
+                title: 'A jeni te sigurt?',
+                text: "Nuk do të mund ta kthesh këtë!",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Po, fshije!',
+                cancelButtonText: 'Jo'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/Contract/DeleteContract/" + id;
+                }
+            })
+        }
+        $(document).ready(function () {
+
+            $("#tableData").DataTable({
+                "order": [],
+                "bInfo": false,
+                "responsive": true,
+                "language": {
+                    "lengthMenu": "Show _MENU_",
+                },
+                "dom":
+                    "<'row'" +
+                    "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+                    "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
+                    ">" +
+
+                    "<'table-responsive'tr>" +
+
+                    "<'row'" +
+                    "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                    "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                    ">"
+
+            });
+        });
+    </script>
+}

@@ -1,3 +1,5 @@
+using DinkToPdf;
+using DinkToPdf.Contracts;
 using InspireHubWebApp.DTOs;
 using InspireHubWebApp.Interfaces;
 using InspireHubWebApp.Models;
@@ -30,6 +32,7 @@ builder.Services.AddAutoMapper(x => x.AddProfile(new MappingProfile()));
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 builder.Services.AddTransient<IEmailService, EmailService>();
 builder.Services.AddScoped<IUploadService, UploadService>();
 builder.Services.AddTransient<reCaptchaService>();

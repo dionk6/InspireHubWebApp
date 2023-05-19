@@ -92,7 +92,7 @@ namespace InspireHubWebApp.Controllers
             _context.Students.Update(student);
             await _context.SaveChangesAsync();
 
-            return student.FirstName+" "+student.LastName+" is confirmed";
+            return student.FirstName + " " + student.LastName + " is confirmed";
         }
 
         public async Task<IActionResult> DeleteStudent(int id)
@@ -129,5 +129,5 @@ namespace InspireHubWebApp.Controllers
             return RedirectToAction("Index");
         }
 
-    }
+    } 
 }

@@ -19,5 +19,6 @@ namespace InspireHubWebApp.Models
         public DbSet<CourseDetail> CourseDetail { get; set; }
         public DbSet<TrainingCourseDetails> TrainingCourseDetails { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<Contract> Contracts { get; set; }
     }
 }

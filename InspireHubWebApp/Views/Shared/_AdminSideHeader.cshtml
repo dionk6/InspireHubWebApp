@@ -43,6 +43,12 @@
 						<span class="menu-text">Students</span>
 					</a>
 				</li>
+				<li class="menu-item @((int)ViewData["MenuNo"] == 4 ? "menu-item-active" : "")" aria-haspopup="true">
+					<a asp-controller="Contract" asp-action="Index" class="menu-link">
+						<i class="menu-icon fas fa-file-contract"></i>
+						<span class="menu-text">Contracts</span>
+					</a>
+				</li>
 			</ul>
 			<!--end::Menu Nav-->
 		</div>
