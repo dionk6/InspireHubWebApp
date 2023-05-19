@@ -44,6 +44,7 @@
                     <th>Price</th>
                     <th>Date Applied</th>
                     <th>Status</th>
+                    <th>Payment</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -69,6 +70,13 @@
                         <td>
                             <span class="label font-weight-bold label-lg label-light-success label-inline @(item.Status != true ? "d-none":"")" id="confirm-@item.Id">Confirmed</span>
                             <span class="label font-weight-bold label-lg label-light-danger label-inline @(item.Status == true ? "d-none":"")" id="pending-@item.Id">Pending</span>
+                        </td>
+                        <td>
+                            @if(item.IsPaid){
+                                <span class="label font-weight-bold label-lg label-light-success label-inline">Paid</span>
+                            }else{
+                                <span class="label font-weight-bold label-lg label-light-danger label-inline">Unpaid</span>
+                            }
                         </td>
                         <td>
                             <a asp-controller="Student" asp-action="Update" asp-route-id="@item.Id" style="margin-right: 5px;">

@@ -97,6 +97,7 @@ namespace InspireHubWebApp.Controllers
             newStudent.Phone = model.Phone;
             newStudent.Price = model.Price.Value;
             newStudent.IsConfirmed = false;
+            newStudent.IsPaid = false;
             newStudent.IsDeleted = false;
             newStudent.CreateDate = DateTime.Now;
 

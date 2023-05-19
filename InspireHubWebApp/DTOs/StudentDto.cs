@@ -18,5 +18,6 @@
         public string DateApplied { get; set; }
         public DateTime CreatedDate { get; set; }
         public bool Status { get; set; }
+        public bool IsPaid { get; set; }
     }
 }

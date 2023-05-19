@@ -10,8 +10,10 @@
         public string Phone { get; set; }
         public decimal Price { get; set; }
         public bool IsConfirmed { get; set; }
+        public bool? IsPaid { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime CreateDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
         public Training Training { get; set; }
     }
 }

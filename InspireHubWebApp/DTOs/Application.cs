@@ -21,6 +21,7 @@ namespace InspireHubWebApp.DTOs
         public string token { get; set; }
         public DateTime CreateDate { get; set; }
         public bool IsConfirmed { get; set; }
+        public bool IsPaid { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

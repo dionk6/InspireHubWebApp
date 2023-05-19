@@ -35,6 +35,7 @@ namespace InspireHubWebApp.Controllers
                                 Phone = t.Phone,
                                 Price = t.Price,
                                 Status = t.IsConfirmed,
+                                IsPaid = t.IsPaid.HasValue ? t.IsPaid.Value : false,
                                 Training = t.Training.Title,
                                 DateApplied = t.CreateDate.ToString("dd MMMM yyyy"),
                                 CreatedDate = t.CreateDate
@@ -120,6 +121,7 @@ namespace InspireHubWebApp.Controllers
         public async Task<IActionResult> Update(Application dto)
         {
             var model = _mapper.Map<Student>(dto);
+            model.ModifiedDate = DateTime.Now;
 
             _context.Students.Update(model);
             await _context.SaveChangesAsync();
