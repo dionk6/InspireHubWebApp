@@ -27,11 +27,14 @@
                     </select>
                 </div>
             </div>
-            <div class="col-lg-6 mb-5 d-flex flex-column justify-content-end">
+            <div class="col-lg-4 mb-5 d-flex flex-column justify-content-end">
                 <div class="form-group mb-2">
-                    <button type="button" class="btn btn-primary" onclick="search()">
+                    <button type="button" class="btn btn-primary mr-3" onclick="search()">
                         Search
                     </button>
+                    <a asp-controller="Student" asp-action="Print" asp-route-id="@Model.TrainingId" target="_blank" class="btn btn-secondary" >
+                        Print
+                    </a>
                 </div>
             </div>
         </div>
@@ -44,7 +47,6 @@
                     <th>Price</th>
                     <th>Date Applied</th>
                     <th>Status</th>
-                    <th>Payment</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -70,12 +72,10 @@
                         <td>
                             <span class="label font-weight-bold label-lg label-light-success label-inline @(item.Status != true ? "d-none":"")" id="confirm-@item.Id">Confirmed</span>
                             <span class="label font-weight-bold label-lg label-light-danger label-inline @(item.Status == true ? "d-none":"")" id="pending-@item.Id">Pending</span>
-                        </td>
-                        <td>
                             @if(item.IsPaid){
-                                <span class="label font-weight-bold label-lg label-light-success label-inline">Paid</span>
+                                <span class="label font-weight-bold label-lg label-light-success label-inline ml-2">Paid</span>
                             }else{
-                                <span class="label font-weight-bold label-lg label-light-danger label-inline">Unpaid</span>
+                                <span class="label font-weight-bold label-lg label-light-danger label-inline ml-2">Unpaid</span>
                             }
                         </td>
                         <td>
@@ -106,6 +106,11 @@
         function search(){
             var trainingId = document.getElementById("TrainingId").value;
             window.location.href = "/Student/Index/" + trainingId;
+        }
+
+        function print(){
+            var trainingId = document.getElementById("TrainingId").value;
+            window.location.href = "/Student/Print/" + trainingId;
         }
         function remove(id) {
             Swal.fire({

@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using DinkToPdf;
+using DinkToPdf.Contracts;
 using InspireHubWebApp.DTOs;
 using InspireHubWebApp.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -13,12 +15,15 @@ namespace InspireHubWebApp.Controllers
     {
         private readonly DataContext _context;
         private readonly IMapper _mapper;
+        private readonly IConverter _converter;
 
         public StudentController(DataContext context,
-                                IMapper mapper)
+                                IMapper mapper,
+                                IConverter converter)
         {
             _context = context;
             _mapper = mapper;
+            _converter = converter;
         }
         public IActionResult Index(int id = 0)
         {
@@ -127,6 +132,102 @@ namespace InspireHubWebApp.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index");
+        }
+
+        public string checkConfirmed(bool isConfirmed)
+        {
+            return isConfirmed ? "Confirmed" : "Pending";
+        }
+
+        public string checkPaid(bool? isPaid)
+        {
+            return isPaid == true ? "Paid" : "Unpaid";
+        }
+
+        public IActionResult Print(int id)
+        {
+            string fileName = "Students";
+            if (id != 0)
+            {
+                var model = _context.Training.Find(id);
+                fileName = model.Title + " - Students";
+            }
+
+            var globalSettings = new GlobalSettings
+            {
+                ColorMode = ColorMode.Color,
+                Orientation = Orientation.Landscape,
+                PaperSize = PaperKind.A4,
+                Margins = new MarginSettings { Top = 10 },
+                DocumentTitle = fileName,
+                //Out = @"D:\PDFCreator\Employee_Report.pdf" // USE THIS PROPERTY TO SAVE PDF TO A PROVIDED LOCATION
+            };
+
+            var students = _context.Students
+                            .Include(t => t.Training)
+                            .Where(t => t.IsDeleted == false && (id == 0 ? t.Id > 0 : t.TrainingId == id))
+                            .ToList();
+            var mainTableData = "";
+            foreach (var item in students)
+            {
+                mainTableData +=
+                    $@"
+                        <tr>
+				            <td>{item.FirstName+" "+item.LastName}</td>
+				            <td>{item.Email}</td>
+				            <td>{item.Phone}</td>
+				            <td>{item.Training.Title}</td>
+				            <td>{item.Price} €</td>
+				            <td>{item.CreateDate.ToString("dd MMMM yyyy")}</td>
+                            <td>{checkConfirmed(item.IsConfirmed)}, {checkPaid(item.IsPaid)}</td>
+			            </tr>
+                    ";
+            }
+
+            var mainTable =
+                $@"
+                    <table>
+	                    <thead>
+		                    <tr>
+			                    <th>Fullname</th>
+			                    <th>Email</th>
+			                    <th>Phone</th>
+			                    <th>Training</th>
+			                    <th>Price</th>
+			                    <th>Date Applied</th>
+			                    <th>Status</th>
+		                    </tr>
+	                    </thead>
+	                    <tbody>
+		                    {mainTableData}
+	                    </tbody>
+                    </table>       
+                ";
+
+
+
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "ReportsViews", "StudentsView.html");
+            string Body = System.IO.File.ReadAllText(path);
+
+            Body = Body.Replace("{{studentsTitle}}", fileName);
+            Body = Body.Replace("{{mainTable}}", mainTable);
+
+            var objectSettings = new ObjectSettings
+            {
+                PagesCount = true,
+                HtmlContent = Body,
+                FooterSettings = { FontName = "Arial", FontSize = 9, Line = true, Center = "Generated on "+DateTime.Now.ToString("dd.MM.yyyy") }
+            };
+
+            var pdf = new HtmlToPdfDocument()
+            {
+                GlobalSettings = globalSettings,
+                Objects = { objectSettings }
+            };
+
+            var file = _converter.Convert(pdf);
+
+            return File(file, "application/pdf");
         }
 
     } 
