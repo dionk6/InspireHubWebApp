@@ -3,6 +3,7 @@ using DinkToPdf.Contracts;
 using InspireHubWebApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace InspireHubWebApp.Controllers
 {
@@ -25,14 +26,29 @@ namespace InspireHubWebApp.Controllers
             return View(model);
         }
 
-        public IActionResult Add()
+        public IActionResult Add(int id = 0)
         {
-            return View();
+            if(id == 0)
+            {
+                return View();
+            }
+            var student = _context.Students
+                        .Include(t => t.Training)
+                        .FirstOrDefault(t => t.Id == id);
+            var model = new Contract();
+            model.FirstName = student.FirstName;
+            model.LastName = student.LastName;
+            model.Price = student.Price.ToString();
+            model.StartDate = student.Training.StartDate.ToString("dd/MM/yyyy");
+            model.EndDate = student.Training.EndDate.ToString("dd/MM/yyyy");
+
+            return View(model);
         }
 
         [HttpPost]
         public async Task<IActionResult> Add(Contract model)
         {
+            model.Id = 0;
             model.IsDeleted = false;
             model.CreatedDate = DateTime.Now;
 

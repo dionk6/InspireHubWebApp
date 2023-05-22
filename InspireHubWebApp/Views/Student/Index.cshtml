@@ -79,6 +79,9 @@
                             }
                         </td>
                         <td>
+                            <a asp-controller="Contract" asp-action="Add" asp-route-id="@item.Id" style="margin-right: 17px;">
+                                <i class="fas fa-file-contract text-success"></i>
+                            </a>
                             <a asp-controller="Student" asp-action="Update" asp-route-id="@item.Id" style="margin-right: 5px;">
                                 <i class="fas fa-edit text-primary"></i>
                             </a>
