@@ -143,5 +143,48 @@ namespace InspireHubWebApp.Controllers
             return File(file, "application/pdf");
         }
 
+        public IActionResult PrintInvoice()
+        {
+            var fileName = "Fatura Inspire Hub";
+            var globalSettings = new GlobalSettings
+            {
+                ColorMode = ColorMode.Color,
+                Orientation = Orientation.Portrait,
+                PaperSize = PaperKind.A4,
+                Margins = new MarginSettings { Top = 5, Bottom = 5 },
+                DocumentTitle = fileName,
+                //Out = @"D:\PDFCreator\Employee_Report.pdf" // USE THIS PROPERTY TO SAVE PDF TO A PROVIDED LOCATION
+            };
+
+
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "ReportsViews", "InvoiceView.html");
+            string Body = System.IO.File.ReadAllText(path);
+
+            var objectSettings = new ObjectSettings
+            {
+                PagesCount = true,
+                HtmlContent = Body,
+                //WebSettings = { DefaultEncoding = "utf-8", UserStyleSheet = Path.Combine(Directory.GetCurrentDirectory(),"ReportsViews", "assets", "styles.css") },
+                //FooterSettings = { FontName = "Arial", FontSize = 9, Line = true, Center = "Generated on "+DateTime.Now.ToString("dd.MM.yyyy") }
+            };
+
+            var pdf = new HtmlToPdfDocument()
+            {
+                GlobalSettings = globalSettings,
+                Objects = { objectSettings }
+            };
+
+            var file = _converter.Convert(pdf);
+
+            /*var fileName = "Projects Report.pdf";
+            var stream = new MemoryStream(file);
+            string mimeType = "application/pdf";
+            return new FileStreamResult(stream, mimeType)
+            {
+                FileDownloadName = fileName
+            };*/
+            return File(file, "application/pdf");
+        }
+
     }
 }
