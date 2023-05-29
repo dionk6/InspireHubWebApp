@@ -95,7 +95,7 @@ namespace InspireHubWebApp.Controllers
                 ColorMode = ColorMode.Color,
                 Orientation = Orientation.Portrait,
                 PaperSize = PaperKind.A4,
-                Margins = new MarginSettings { Top = 10 },
+                Margins = new MarginSettings { Top = 30, Bottom = 35 },
                 DocumentTitle = fileName,
                 //Out = @"D:\PDFCreator\Employee_Report.pdf" // USE THIS PROPERTY TO SAVE PDF TO A PROVIDED LOCATION
             };
@@ -117,7 +117,8 @@ namespace InspireHubWebApp.Controllers
                 PagesCount = true,
                 /*HeaderSettings = new HeaderSettings
                 {
-                    Spacing
+                    Spacing = 2,
+                    
                 },*/
                 HtmlContent = Body,
                 //WebSettings = { DefaultEncoding = "utf-8", UserStyleSheet = Path.Combine(Directory.GetCurrentDirectory(),"ReportsViews", "assets", "styles.css") },
