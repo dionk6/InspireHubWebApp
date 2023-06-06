@@ -1,0 +1,82 @@
+﻿@model Invoice
+
+@{
+    ViewData["Title"] = "Update Invoice";
+    ViewData["MenuNo"] = 5;
+    ViewData["HeaderNo"] = 1;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card shadow-sm">
+    <div class="card-header">
+        <h3 class="card-title mb-0">Update Invoice</h3>
+    </div>
+    <div class="card-body">
+        <form asp-action="Update" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="@Model.Id" value="@Model.Id" />
+            <input type="hidden" asp-for="@Model.CreatedDate" value="@Model.CreatedDate" />
+            <input type="hidden" asp-for="@Model.IsDeleted" value="@Model.IsDeleted" />
+            <input type="hidden" asp-for="@Model.StudentId" value="@Model.StudentId" />
+            <input type="hidden" asp-for="@Model.Year" value="@Model.Year" />
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label class="form-label">Student</label>
+                        <select asp-items="ViewBag.students" class="form-control select2" disabled asp-for="StudentId">
+                        </select>    
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="form-label">Address</label>
+                        <input type="text" class="form-control" placeholder="Address" asp-for="StudentAddress" />
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="form-label">Invoice Date</label>
+                        <input type="text" class="form-control" placeholder="Invoice Date" asp-for="InvoiceDate" />
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="form-label">Invoice No</label>
+                        <input type="number" class="form-control" placeholder="Invoice No" asp-for="InvoiceNo" />
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <input type="text" class="form-control" placeholder="Description" asp-for="Description" />
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="form-label">Month</label>
+                        <input type="text" class="form-control" placeholder="Month" asp-for="Month" />
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="form-label">Price</label>
+                        <input type="number" class="form-control" asp-for="Price" placeholder="Price" />
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="d-flex justify-content-between mt-5">
+                        <button type="submit" class="btn btn-primary">Ruaj</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{ 
+    <partial name="~/Views/Shared/_ValidationScriptsPartial.cshtml" />
+    <script>
+        $(".select2").select2({
+
+        });
+    </script>
+}

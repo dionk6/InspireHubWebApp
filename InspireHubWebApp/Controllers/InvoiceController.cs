@@ -83,13 +83,51 @@ namespace InspireHubWebApp.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Update(int id)
+        {
+            var model = _context.Invoices.Find(id);
+            var students = _context.Students
+                            .Where(t => t.IsDeleted == false)
+                            .Select(t => new SelectDto
+                            {
+                                Label = t.FirstName + " " + t.LastName,
+                                Value = t.Id.ToString()
+                            })
+                            .ToList();
+            ViewBag.students = new SelectList(students, "Value", "Label");
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(Invoice model)
+        {
+            model.ModifiedDate = DateTime.Now;
+
+            _context.Invoices.Update(model);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> DeleteInvoice(int id)
+        {
+            var model = _context.Invoices.Find(id);
+            model.IsDeleted = true;
+
+            _context.Invoices.Update(model);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+
         public IActionResult PrintInvoice(int id)
         {
             var invoice = _context.Invoices
                         .Include(t => t.Student)
                         .FirstOrDefault(t => t.Id == id);
 
-            var fileName = "Fatura Inspire Hub";
+            var fileName = "Fatura Inspire Hub - "+invoice.Student.FirstName+" "+invoice.Student.LastName;
             var globalSettings = new GlobalSettings
             {
                 ColorMode = ColorMode.Color,
@@ -109,6 +147,7 @@ namespace InspireHubWebApp.Controllers
             Body = Body.Replace("{{studentName}}", invoice.Student.FirstName+" "+invoice.Student.LastName);
             Body = Body.Replace("{{studentAddress}}", invoice.StudentAddress);
             Body = Body.Replace("{{description}}", invoice.Description);
+            Body = Body.Replace("{{month}}", invoice.Month);
             Body = Body.Replace("{{price}}", invoice.Price);
 
 
