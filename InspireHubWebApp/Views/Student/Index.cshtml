@@ -55,14 +55,21 @@
                 {
                     <tr>
                         <td class="datatable-cell">
-                            <div class="d-flex align-items-center">								
-                                <div class="symbol symbol-40 symbol-success flex-shrink-0">									
-                                    <div class="symbol-label">@item.FirstName[0]</div>								
-                                </div>								
-                                <div class="ml-2">									
-                                    <div class="text-dark-75 font-weight-bold line-height-sm">@item.FirstName @item.LastName</div>									
-                                    <a href="#" class="font-size-sm text-dark-50 text-hover-primary">@item.Email</a>								
-                                </div>							
+                            <div class="d-flex align-items-center justify-content-between">								
+                                <div class="d-flex align-items-center">
+                                    <div class="symbol symbol-40 symbol-success flex-shrink-0">									
+                                        <div class="symbol-label">@item.FirstName[0]</div>								
+                                    </div>								
+                                    <div class="ml-2">									
+                                        <div class="text-dark-75 font-weight-bold line-height-sm">@item.FirstName @item.LastName</div>									
+                                        <a href="#" class="font-size-sm text-dark-50 text-hover-primary">@item.Email</a>								
+                                    </div>	
+                                </div>
+                                <div>
+                                    <a asp-controller="Invoice" asp-action="Add" asp-route-id="@item.Id" style="margin-right: 17px;">
+                                        <i class="flaticon-file-1 text-success text-bold"></i>
+                                    </a>
+                                </div>
                             </div>
                         </td>
                         <td>@item.Phone</td>
