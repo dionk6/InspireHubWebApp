@@ -13,12 +13,21 @@
     </div>
     <div class="card-body">
         <form asp-action="Add" method="post" enctype="multipart/form-data">
+            @if (Model.StudentId!= 0)
+            {
+                <input type="hidden" asp-for="@Model.StudentId" value="@Model.StudentId" />
+            }
             <div class="row">
                 <div class="col-lg-12">
                     <div class="form-group">
                         <label class="form-label">Student</label>
-                        <select asp-items="ViewBag.students" class="form-control select2" asp-for="StudentId">
-                        </select>
+                        @if(Model.StudentId != 0){
+                            <select asp-items="ViewBag.students" class="form-control select2" disabled asp-for="StudentId">
+                            </select>    
+                        }else{
+                            <select asp-items="ViewBag.students" class="form-control select2" asp-for="StudentId">
+                            </select>
+                        }
                     </div>
                 </div>
                 <div class="col-lg-4">
