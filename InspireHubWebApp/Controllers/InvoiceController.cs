@@ -27,7 +27,8 @@ namespace InspireHubWebApp.Controllers
             var model = _context.Invoices
                         .Include(t => t.Student)
                         .Where(t => t.IsDeleted == false)
-                        .OrderByDescending(t => t.InvoiceNo)
+                        .OrderByDescending(t => t.Year)
+                            .ThenByDescending(t => t.InvoiceNo)
                         .ToList();
 
             return View(model);
@@ -47,13 +48,17 @@ namespace InspireHubWebApp.Controllers
                 model.Price = student.Price.ToString();
             }
             model.InvoiceDate = DateTime.Now.ToString("dd.MM.yyyy");
-
+            model.Year = DateTime.Now.Year;
             var invoices = _context.Invoices
-                        .Where(t => t.IsDeleted == false)
+                        .Where(t => t.IsDeleted == false && t.Year == DateTime.Now.Year)
                         .ToList();
             if(invoices.Count > 0)
             {
                 model.InvoiceNo = invoices.Max(t => t.InvoiceNo) + 1;
+            }
+            else
+            {
+                model.InvoiceNo = 1;
             }
 
             var students = _context.Students
@@ -74,7 +79,6 @@ namespace InspireHubWebApp.Controllers
         {
             model.Id = 0;
             model.IsDeleted = false;
-            model.Year = DateTime.Now.Year;
             model.CreatedDate = DateTime.Now;
 
             _context.Invoices.Add(model);
