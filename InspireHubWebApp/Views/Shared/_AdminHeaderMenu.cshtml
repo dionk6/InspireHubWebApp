@@ -42,6 +42,14 @@
 								</a>
 							</li>
                         }
+						else if ((int)ViewData["MenuNo"] == 5)
+                        {
+                            <li class="menu-item @((int)ViewData["HeaderNo"] == 1 ? "menu-item-active" : "")" aria-haspopup="true">
+								<a asp-controller="Invoice" asp-action="Index" class="menu-link">
+									<span class="menu-text">Invoices</span>
+								</a>
+							</li>
+                        }
 				</ul>
 				<!--end::Header Nav-->
 			</div>
