@@ -19,5 +19,6 @@
         public DateTime CreatedDate { get; set; }
         public bool Status { get; set; }
         public bool IsPaid { get; set; }
+        public bool HasInvoice { get; set; }
     }
 }

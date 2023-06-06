@@ -62,7 +62,9 @@ namespace InspireHubWebApp.Controllers
             }
 
             var students = _context.Students
-                            .Where(t => t.IsDeleted == false)
+                            .Include(t => t.Invoice)
+                            .Where(t => t.IsDeleted == false && t.Invoice.Count() == 0)
+                            .OrderByDescending(t => t.CreateDate)
                             .Select(t => new SelectDto
                             {
                                 Label = t.FirstName+" "+t.LastName,
@@ -91,7 +93,9 @@ namespace InspireHubWebApp.Controllers
         {
             var model = _context.Invoices.Find(id);
             var students = _context.Students
-                            .Where(t => t.IsDeleted == false)
+                            .Include(t => t.Invoice)
+                            .Where(t => t.IsDeleted == false && t.Invoice.Count() == 0)
+                            .OrderByDescending(t => t.CreateDate)
                             .Select(t => new SelectDto
                             {
                                 Label = t.FirstName + " " + t.LastName,

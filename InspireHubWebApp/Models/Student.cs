@@ -15,5 +15,6 @@
         public DateTime CreateDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public Training Training { get; set; }
+        public virtual ICollection<Invoice> Invoice { get; set; }
     }
 }

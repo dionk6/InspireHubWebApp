@@ -47,7 +47,7 @@
                     <th>Price</th>
                     <th>Date Applied</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -55,21 +55,14 @@
                 {
                     <tr>
                         <td class="datatable-cell">
-                            <div class="d-flex align-items-center justify-content-between">								
-                                <div class="d-flex align-items-center">
-                                    <div class="symbol symbol-40 symbol-success flex-shrink-0">									
-                                        <div class="symbol-label">@item.FirstName[0]</div>								
-                                    </div>								
-                                    <div class="ml-2">									
-                                        <div class="text-dark-75 font-weight-bold line-height-sm">@item.FirstName @item.LastName</div>									
-                                        <a href="#" class="font-size-sm text-dark-50 text-hover-primary">@item.Email</a>								
-                                    </div>	
-                                </div>
-                                <div>
-                                    <a asp-controller="Invoice" asp-action="Add" asp-route-id="@item.Id" style="margin-right: 17px;">
-                                        <i class="flaticon-file-1 text-success text-bold"></i>
-                                    </a>
-                                </div>
+                            <div class="d-flex align-items-center">
+                                <div class="symbol symbol-40 symbol-success flex-shrink-0">									
+                                    <div class="symbol-label">@item.FirstName[0]</div>								
+                                </div>								
+                                <div class="ml-2">									
+                                    <div class="text-dark-75 font-weight-bold line-height-sm">@item.FirstName @item.LastName</div>									
+                                    <a href="#" class="font-size-sm text-dark-50 text-hover-primary">@item.Email</a>								
+                                </div>	
                             </div>
                         </td>
                         <td>@item.Phone</td>
@@ -86,7 +79,28 @@
                             }
                         </td>
                         <td>
-                            <a asp-controller="Contract" asp-action="Add" asp-route-id="@item.Id" style="margin-right: 17px;">
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary font-weight-bold dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Actions
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    @if(!item.Status){
+                                        <button type="button" class="dropdown-item approveStudent" value="@item.Id">
+                                            Confirm
+                                        </button>
+                                    }
+                                    @if (!item.HasInvoice)
+                                    {
+                                        <a class="dropdown-item" asp-controller="Invoice" asp-action="Add" asp-route-id="@item.Id">Invoice</a>
+                                    }
+                                    <a class="dropdown-item" asp-controller="Contract" asp-action="Add" asp-route-id="@item.Id">Contract</a>
+                                    <a class="dropdown-item" asp-controller="Student" asp-action="Update" asp-route-id="@item.Id">Edit</a>
+                                    <button type="button" class="dropdown-item deleteIcon" onclick="remove(@item.Id)">
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                            @*<a asp-controller="Contract" asp-action="Add" asp-route-id="@item.Id" style="margin-right: 17px;">
                                 <i class="fas fa-file-contract text-success"></i>
                             </a>
                             <a asp-controller="Student" asp-action="Update" asp-route-id="@item.Id" style="margin-right: 5px;">
@@ -94,12 +108,8 @@
                             </a>
                             <button type="button" class="deleteIcon" onclick="remove(@item.Id)">
                                 <i class="fas fa-trash text-danger"></i>
-                            </button>
-                            @if(!item.Status){
-                                <button type="button" class="approveStudent" value="@item.Id" style="margin-right: 5px;background: none;border: 0;">
-                                    <i class="flaticon2-check-mark text-success"></i>
-                                </button>
-                            }
+                            </button>*@
+                           
                         </td>
                     </tr>
                 }
@@ -134,7 +144,7 @@
         $(document).ready(function () {
             $('.select2').select2({
 		    });
-            $('#tableData').on('click', '.approveStudent', function () {
+            $('#tableData .dropdown-menu').on('click', '.approveStudent', function () {
                 var _id = $(this).attr("value");
                 $("#confirm-"+_id).removeClass("d-none");
                 $("#pending-"+_id).addClass("d-none");

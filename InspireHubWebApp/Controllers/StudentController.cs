@@ -30,6 +30,7 @@ namespace InspireHubWebApp.Controllers
             var model = new StudentListDto();
             var students = _context.Students
                             .Include(t => t.Training)
+                            .Include(t => t.Invoice)
                             .Where(t => t.IsDeleted == false && (id == 0 ? t.Id > 0 : t.TrainingId == id))
                             .Select(t => new StudentDto
                             {
@@ -43,7 +44,8 @@ namespace InspireHubWebApp.Controllers
                                 IsPaid = t.IsPaid.HasValue ? t.IsPaid.Value : false,
                                 Training = t.Training.Title,
                                 DateApplied = t.CreateDate.ToString("dd MMMM yyyy"),
-                                CreatedDate = t.CreateDate
+                                CreatedDate = t.CreateDate,
+                                HasInvoice = t.Invoice.Where(x => x.IsDeleted == false).Count() > 0
                             })
                             .OrderByDescending(t => t.CreatedDate)
                             .ToList();
