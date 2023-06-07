@@ -35,6 +35,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 builder.Services.AddTransient<IEmailService, EmailService>();
 builder.Services.AddScoped<IUploadService, UploadService>();
+builder.Services.AddScoped<IMainService, MainService>();
 builder.Services.AddTransient<reCaptchaService>();
 var app = builder.Build();
 

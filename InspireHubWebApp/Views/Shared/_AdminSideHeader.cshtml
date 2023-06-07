@@ -1,4 +1,9 @@
-﻿<div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
+﻿@using InspireHubWebApp.Interfaces
+@inject IMainService mainService
+@{
+	int newStudents = mainService.CountNewStudents();
+}
+<div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
 	<!--begin::Brand-->
 	<div class="brand flex-column-auto" id="kt_brand">
 		<!--begin::Logo-->
@@ -38,9 +43,15 @@
 					</a>
 				</li>
 				<li class="menu-item @((int)ViewData["MenuNo"] == 3 ? "menu-item-active" : "")" aria-haspopup="true">
-					<a asp-controller="Student" asp-action="Index" asp-route-id="0" class="menu-link">
+					<a asp-controller="Student" asp-action="Index" asp-route-id="0" class="menu-link" style="position: relative;">
 						<i class="menu-icon flaticon2-avatar"></i>
 						<span class="menu-text">Students</span>
+						@if(newStudents > 0)
+						{
+							<span class="bg-primary text-white text-center" style="position: absolute;top: 0; right: 0;width: 20px; height: 20px;border-radius: 100%;">
+								@newStudents
+							</span>
+						}
 					</a>
 				</li>
 				<li class="menu-item @((int)ViewData["MenuNo"] == 4 ? "menu-item-active" : "")" aria-haspopup="true">

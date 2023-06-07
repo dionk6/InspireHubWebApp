@@ -99,6 +99,7 @@ namespace InspireHubWebApp.Controllers
             newStudent.IsConfirmed = false;
             newStudent.IsPaid = false;
             newStudent.IsDeleted = false;
+            newStudent.IsViewed = false;
             newStudent.CreateDate = DateTime.Now;
 
             _context.Students.Add(newStudent);

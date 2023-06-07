@@ -25,8 +25,20 @@ namespace InspireHubWebApp.Controllers
             _mapper = mapper;
             _converter = converter;
         }
-        public IActionResult Index(int id = 0)
+        public async Task<IActionResult> Index(int id = 0)
         {
+            var unviewedStudents = _context.Students
+                                    .Where(t => t.IsDeleted == false && (t.IsViewed == false || t.IsViewed == null))
+                                    .ToList();
+            foreach (var item in unviewedStudents)
+                item.IsViewed = true;
+
+            if (unviewedStudents.Count() > 0)
+            {
+                _context.Students.UpdateRange(unviewedStudents);
+                await _context.SaveChangesAsync();
+            }
+
             var model = new StudentListDto();
             var students = _context.Students
                             .Include(t => t.Training)

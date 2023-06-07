@@ -11,6 +11,7 @@
         public decimal Price { get; set; }
         public bool IsConfirmed { get; set; }
         public bool? IsPaid { get; set; }
+        public bool? IsViewed { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime? ModifiedDate { get; set; }

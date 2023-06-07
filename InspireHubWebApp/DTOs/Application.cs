@@ -23,5 +23,6 @@ namespace InspireHubWebApp.DTOs
         public bool IsConfirmed { get; set; }
         public bool IsPaid { get; set; }
         public bool IsDeleted { get; set; }
+        public bool? IsViewed { get; set; }
     }
 }
