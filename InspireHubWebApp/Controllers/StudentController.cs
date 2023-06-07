@@ -2,6 +2,7 @@
 using DinkToPdf;
 using DinkToPdf.Contracts;
 using InspireHubWebApp.DTOs;
+using InspireHubWebApp.Interfaces;
 using InspireHubWebApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,15 +17,26 @@ namespace InspireHubWebApp.Controllers
         private readonly DataContext _context;
         private readonly IMapper _mapper;
         private readonly IConverter _converter;
+        private readonly IEmailService _emailService;
 
         public StudentController(DataContext context,
                                 IMapper mapper,
-                                IConverter converter)
+                                IConverter converter,
+                                IEmailService emailService)
         {
             _context = context;
             _mapper = mapper;
             _converter = converter;
+            _emailService = emailService;
         }
+
+        [HttpPost]
+        public async Task<IActionResult> SendMessage(string emails, string message)
+        {
+            await _emailService.SendMessageAsync(emails,message);
+            return RedirectToAction("Index");
+        }
+
         public async Task<IActionResult> Index(int id = 0)
         {
             var unviewedStudents = _context.Students
