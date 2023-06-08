@@ -2,6 +2,7 @@
 using InspireHubWebApp.Interfaces;
 using MailKit.Net.Smtp;
 using MimeKit;
+using System.Net.Mime;
 
 namespace InspireHubWebApp.Services
 {
@@ -46,7 +47,7 @@ namespace InspireHubWebApp.Services
             return true;
         }
 
-        public async Task<bool> SendMessageAsync(string emails, string msg)
+        public async Task<bool> SendMessageAsync(string emails, string msg, IFormFile attach)
         {
             MimeMessage message = new MimeMessage();
 
@@ -67,10 +68,27 @@ namespace InspireHubWebApp.Services
             message.Subject = "Inspire Hub - Message";
             //message.HtmlBody = contact.Message;
 
-            message.Body = new TextPart("html")
+            /*message.Body = new TextPart("html")
             {
                 Text = msg
-            };
+            };*/
+
+            var builder = new BodyBuilder();
+            byte[] fileBytes;
+            
+            var file = attach;
+            if (file.Length > 0)
+            {
+                using (var ms = new MemoryStream())
+                {
+                    file.CopyTo(ms);
+                    fileBytes = ms.ToArray();
+                }
+                builder.Attachments.Add(file.FileName, fileBytes, MimeKit.ContentType.Parse(attach.ContentType));
+            }
+            builder.HtmlBody = msg;
+            message.Body = builder.ToMessageBody();
+
 
             SmtpClient client = new SmtpClient();
 
