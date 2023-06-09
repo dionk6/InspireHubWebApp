@@ -36,9 +36,16 @@
 		<div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
 			<!--begin::Menu Nav-->
 			<ul class="menu-nav">
+				<li class="menu-item @((int)ViewData["MenuNo"] == 1 ? "menu-item-active" : "")" aria-haspopup="true">
+					<a asp-controller="Dashboard" asp-action="Index" class="menu-link">
+						<i class="menu-icon flaticon2-architecture-and-city"></i>
+						<span class="menu-text">Dashboard</span>
+					</a>
+				</li>
 				<li class="menu-item @((int)ViewData["MenuNo"] == 2 ? "menu-item-active" : "")" aria-haspopup="true">
 					<a asp-controller="Training" asp-action="Index" class="menu-link">
-						<i class="menu-icon flaticon2-architecture-and-city"></i>
+						@*<i class="menu-icon flaticon2-architecture-and-city"></i>*@
+						<i class="menu-icon far fa-list-alt"></i>
 						<span class="menu-text">Trainings</span>
 					</a>
 				</li>

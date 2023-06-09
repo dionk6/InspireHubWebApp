@@ -75,16 +75,18 @@ namespace InspireHubWebApp.Services
 
             var builder = new BodyBuilder();
             byte[] fileBytes;
-            
-            var file = attach;
-            if (file.Length > 0)
+            if(attach != null)
             {
-                using (var ms = new MemoryStream())
+                var file = attach;
+                if (file.Length > 0)
                 {
-                    file.CopyTo(ms);
-                    fileBytes = ms.ToArray();
+                    using (var ms = new MemoryStream())
+                    {
+                        file.CopyTo(ms);
+                        fileBytes = ms.ToArray();
+                    }
+                    builder.Attachments.Add(file.FileName, fileBytes, MimeKit.ContentType.Parse(attach.ContentType));
                 }
-                builder.Attachments.Add(file.FileName, fileBytes, MimeKit.ContentType.Parse(attach.ContentType));
             }
             builder.HtmlBody = msg;
             message.Body = builder.ToMessageBody();

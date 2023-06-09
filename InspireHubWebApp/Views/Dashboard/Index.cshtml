@@ -1,0 +1,209 @@
+﻿@using InspireHubWebApp.DTOs;
+@model DashboardDto
+
+@{
+    ViewData["Title"] = "Dashboard";
+    ViewData["MenuNo"] = 1;
+    ViewData["HeaderNo"] = 1;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-3">
+        <!--begin::Stats Widget 13-->
+        <a asp-controller="Training" asp-action="Index" class="card card-custom bg-danger bg-hover-state-danger card-stretch gutter-b">
+            <!--begin::Body-->
+            <div class="card-body">
+                <span class="svg-icon svg-icon-white svg-icon-3x ml-n1">
+                    <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo13/dist/../src/media/svg/icons/Text/Bullet-list.svg-->
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <rect x="0" y="0" width="24" height="24"/>
+                            <path d="M10.5,5 L19.5,5 C20.3284271,5 21,5.67157288 21,6.5 C21,7.32842712 20.3284271,8 19.5,8 L10.5,8 C9.67157288,8 9,7.32842712 9,6.5 C9,5.67157288 9.67157288,5 10.5,5 Z M10.5,10 L19.5,10 C20.3284271,10 21,10.6715729 21,11.5 C21,12.3284271 20.3284271,13 19.5,13 L10.5,13 C9.67157288,13 9,12.3284271 9,11.5 C9,10.6715729 9.67157288,10 10.5,10 Z M10.5,15 L19.5,15 C20.3284271,15 21,15.6715729 21,16.5 C21,17.3284271 20.3284271,18 19.5,18 L10.5,18 C9.67157288,18 9,17.3284271 9,16.5 C9,15.6715729 9.67157288,15 10.5,15 Z" fill="#000000"/>
+                            <path d="M5.5,8 C4.67157288,8 4,7.32842712 4,6.5 C4,5.67157288 4.67157288,5 5.5,5 C6.32842712,5 7,5.67157288 7,6.5 C7,7.32842712 6.32842712,8 5.5,8 Z M5.5,13 C4.67157288,13 4,12.3284271 4,11.5 C4,10.6715729 4.67157288,10 5.5,10 C6.32842712,10 7,10.6715729 7,11.5 C7,12.3284271 6.32842712,13 5.5,13 Z M5.5,18 C4.67157288,18 4,17.3284271 4,16.5 C4,15.6715729 4.67157288,15 5.5,15 C6.32842712,15 7,15.6715729 7,16.5 C7,17.3284271 6.32842712,18 5.5,18 Z" fill="#000000" opacity="0.3"/>
+                        </g>
+                    </svg><!--end::Svg Icon-->
+                </span>        
+                <div class="text-inverse-danger font-weight-bolder font-size-h5 mb-2 mt-5">@Model.Trainings</div>
+                <div class="font-weight-bold text-inverse-danger font-size-sm">Trainings</div>
+            </div>
+            <!--end::Body-->
+        </a>
+        <!--end::Stats Widget 13-->
+    </div>
+    <div class="col-xl-3">
+        <!--begin::Stats Widget 14-->
+        <a asp-controller="Student" asp-action="Index" class="card card-custom bg-primary bg-hover-state-primary card-stretch gutter-b">
+            <!--begin::Body-->
+            <div class="card-body">
+                <span class="svg-icon svg-icon-white svg-icon-3x ml-n1">
+                   <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo13/dist/../src/media/svg/icons/General/User.svg-->
+                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <polygon points="0 0 24 0 24 24 0 24"/>
+                            <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+                            <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fill-rule="nonzero"/>
+                        </g>
+                    </svg><!--end::Svg Icon-->
+                </span>        
+                <div class="text-inverse-primary font-weight-bolder font-size-h5 mb-2 mt-5">@Model.Students</div>
+                <div class="font-weight-bold text-inverse-primary font-size-sm">Students</div>
+            </div>
+            <!--end::Body-->
+        </a>
+        <!--end::Stats Widget 14-->
+    </div>
+    <div class="col-xl-3">
+        <!--begin::Stats Widget 15-->
+        <a asp-controller="Student" asp-action="Index" class="card card-custom bg-success bg-hover-state-success card-stretch gutter-b">
+            <!--begin::Body-->
+            <div class="card-body">
+                <span class="svg-icon svg-icon-white svg-icon-3x ml-n1">
+                    <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo13/dist/../src/media/svg/icons/Shopping/Wallet3.svg-->
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <rect x="0" y="0" width="24" height="24"/>
+                        <path d="M4,4 L20,4 C21.1045695,4 22,4.8954305 22,6 L22,18 C22,19.1045695 21.1045695,20 20,20 L4,20 C2.8954305,20 2,19.1045695 2,18 L2,6 C2,4.8954305 2.8954305,4 4,4 Z" fill="#000000" opacity="0.3"/>
+                        <path d="M18.5,11 L5.5,11 C4.67157288,11 4,11.6715729 4,12.5 L4,13 L8.58578644,13 C8.85100293,13 9.10535684,13.1053568 9.29289322,13.2928932 L10.2928932,14.2928932 C10.7456461,14.7456461 11.3597108,15 12,15 C12.6402892,15 13.2543539,14.7456461 13.7071068,14.2928932 L14.7071068,13.2928932 C14.8946432,13.1053568 15.1489971,13 15.4142136,13 L20,13 L20,12.5 C20,11.6715729 19.3284271,11 18.5,11 Z" fill="#000000"/>
+                        <path d="M5.5,6 C4.67157288,6 4,6.67157288 4,7.5 L4,8 L20,8 L20,7.5 C20,6.67157288 19.3284271,6 18.5,6 L5.5,6 Z" fill="#000000"/>
+                    </g>
+                </svg><!--end::Svg Icon-->
+                </span>        
+                <div class="text-inverse-success font-weight-bolder font-size-h5 mb-2 mt-5">@Model.UnpaidAmount €</div>
+                <div class="font-weight-bold text-inverse-success font-size-sm">Unpaid Amount</div>
+            </div>
+            <!--end::Body-->
+        </a>
+        <!--end::Stats Widget 15-->
+    </div>
+    <div class="col-xl-3">
+        <!--begin::Stats Widget 15-->
+        <a asp-controller="Invoice" asp-action="Index" class="card card-custom bg-info bg-hover-state-info card-stretch gutter-b">
+            <!--begin::Body-->
+            <div class="card-body">
+                <span class="svg-icon svg-icon-white svg-icon-3x ml-n1">
+                    <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo13/dist/../src/media/svg/icons/Files/File-done.svg-->
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <polygon points="0 0 24 0 24 24 0 24"/>
+                            <path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z M10.875,15.75 C11.1145833,15.75 11.3541667,15.6541667 11.5458333,15.4625 L15.3791667,11.6291667 C15.7625,11.2458333 15.7625,10.6708333 15.3791667,10.2875 C14.9958333,9.90416667 14.4208333,9.90416667 14.0375,10.2875 L10.875,13.45 L9.62916667,12.2041667 C9.29375,11.8208333 8.67083333,11.8208333 8.2875,12.2041667 C7.90416667,12.5875 7.90416667,13.1625 8.2875,13.5458333 L10.2041667,15.4625 C10.3958333,15.6541667 10.6354167,15.75 10.875,15.75 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+                            <path d="M10.875,15.75 C10.6354167,15.75 10.3958333,15.6541667 10.2041667,15.4625 L8.2875,13.5458333 C7.90416667,13.1625 7.90416667,12.5875 8.2875,12.2041667 C8.67083333,11.8208333 9.29375,11.8208333 9.62916667,12.2041667 L10.875,13.45 L14.0375,10.2875 C14.4208333,9.90416667 14.9958333,9.90416667 15.3791667,10.2875 C15.7625,10.6708333 15.7625,11.2458333 15.3791667,11.6291667 L11.5458333,15.4625 C11.3541667,15.6541667 11.1145833,15.75 10.875,15.75 Z" fill="#000000"/>
+                        </g>
+                    </svg><!--end::Svg Icon-->
+                </span>        
+                <div class="text-inverse-success font-weight-bolder font-size-h5 mb-2 mt-5">@Model.Invoices</div>
+                <div class="font-weight-bold text-inverse-success font-size-sm">Invoices</div>
+            </div>
+            <!--end::Body-->
+        </a>
+        <!--end::Stats Widget 15-->
+    </div>
+</div>
+
+<div class="card card-custom gutter-b example example-compact shadow-sm">
+    <div class="card-header">
+        <h3 class="card-title">Students</h3>
+    </div>
+    <div class="card-body">
+        <div id="chart"></div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            let options, data;
+
+            var element = document.getElementById("chart");
+            if (!element) {
+                return;
+            }
+
+            $.ajax({
+                type: 'GET',
+                url: '/Dashboard/GetData',
+                //data: { dateRange: _dateRange },
+                async: false,
+                cache: false,
+                success: function (result) {
+                    data = result;
+                }
+            });
+
+            options = {
+                series: [{
+                    name: "Students",
+                    data: data
+                }],
+                chart: {
+                    height: 350,
+                    type: 'area',
+                    events: {
+                        click(event, chartContext, config) {
+                            var _dateClicked = config.config.series[config.seriesIndex].data[config.dataPointIndex].x;
+                            $.ajax({
+                                type: 'GET',
+                                url: '/Statistics/ChartDetails',
+                                data: { dateClicked: _dateClicked },
+                                cache: false,
+                                success: function (result) {
+                                    $("#chart-details").html(result);
+                                    $("#exampleModal").modal("show");
+                                }
+                            });
+                        }
+                    },
+                    toolbar: {
+                        show: true
+                    }
+
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                legend: {
+                    show: false
+                },
+                stroke: {
+                    curve: 'smooth'
+                },
+                tooltip: {
+                    style: {
+                        fontSize: '12px',
+                    },
+                    y: {
+                        formatter: function (val) {
+                            return val;
+                        }
+                    }
+                },
+                grid: {
+                    row: {
+                        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                        opacity: 0.5
+                    },
+                },
+                xaxis: {
+                    type: 'datetime',
+                    @*labels: {
+                        formatter: value => {
+                            return moment(new Date(value)).format('d MMMM')
+                        },
+                    }*@
+                },
+                yaxis: {
+                    labels: {
+                        formatter: function (value) {
+                            return value;
+                        }
+                    },
+                },
+            };
+
+            var chart = new ApexCharts(element, options);
+            chart.render();
+
+
+        });
+    </script>
+}
