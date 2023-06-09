@@ -13,7 +13,13 @@
 			<div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
 				<!--begin::Header Nav-->
 				<ul class="menu-nav">
-					@if ((int)ViewData["MenuNo"] == 2)
+						@if((int)ViewData["MenuNo"] == 1){
+							<li class="menu-item @((int)ViewData["HeaderNo"] == 1 ? "menu-item-active" : "")" aria-haspopup="true">
+								<a asp-controller="Dashboard" asp-action="Index" class="menu-link">
+									<span class="menu-text">Dashboard</span>
+								</a>
+							</li>
+						}else @if ((int)ViewData["MenuNo"] == 2)
                         {
 							<li class="menu-item @((int)ViewData["HeaderNo"] == 1 ? "menu-item-active" : "")" aria-haspopup="true">
 								<a asp-controller="Training" asp-action="Index" class="menu-link">
