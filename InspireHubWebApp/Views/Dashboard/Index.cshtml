@@ -102,10 +102,58 @@
 
 <div class="card card-custom gutter-b example example-compact shadow-sm">
     <div class="card-header">
-        <h3 class="card-title">Students</h3>
+        <h3 class="card-title">Statistics</h3>
     </div>
     <div class="card-body">
-        <div id="chart"></div>
+        <div class="row">
+            <div class="col-lg-7">
+                <div id="chart"></div>
+            </div>
+            <div class="col-lg-5">
+                @foreach (var item in Model.TrainingsList)
+                {
+                    <div class="d-flex flex-wrap align-items-center mb-10">
+                        <!--begin::Symbol-->
+                        <div class="symbol symbol-60 symbol-2by3 flex-shrink-0 mr-4">
+                            <div class="symbol-label" style="background-image: url('@("http://inspirehub.info/"+item.InstructorImage)')"></div>
+                        </div>
+                        <!--end::Symbol-->
+
+                        <!--begin::Title-->
+                        <div class="d-flex flex-column flex-grow-1 my-lg-0 my-2 pr-3">
+                            <a href="#" class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">
+                                @item.Title
+                            </a>
+                            <span class="text-muted font-weight-bold font-size-sm my-1">
+                                @item.Instructor
+                            </span>
+                            <span class="text-muted font-weight-bold font-size-sm">
+                                @item.StartDate.ToString("dd MMMM yyyy") - @item.EndDate.ToString("dd MMMM yyyy")
+                            </span>
+                        </div>
+                        <!--end::Title-->
+
+                        <!--begin::Info-->
+                        <div class="d-flex align-items-center py-lg-0 py-2">
+                            <div class="d-flex flex-column text-right">
+                                <span class="text-dark-75 font-weight-bolder font-size-h4">
+                                    @if(DateTime.Now < item.StartDate || DateTime.Now > item.EndDate)
+                                    {
+                                        <span>-</span>
+                                    }else{
+                                        @((item.EndDate-DateTime.Now).Days)
+                                    }
+                                </span>
+                                <span class="text-muted font-size-sm font-weight-bolder">
+                                    Days left
+                                </span>
+                            </div>
+                        </div>
+                        <!--end::Info-->
+                    </div>
+                }
+            </div>
+        </div>
     </div>
 </div>
 
@@ -138,21 +186,6 @@
                 chart: {
                     height: 350,
                     type: 'area',
-                    events: {
-                        click(event, chartContext, config) {
-                            var _dateClicked = config.config.series[config.seriesIndex].data[config.dataPointIndex].x;
-                            $.ajax({
-                                type: 'GET',
-                                url: '/Statistics/ChartDetails',
-                                data: { dateClicked: _dateClicked },
-                                cache: false,
-                                success: function (result) {
-                                    $("#chart-details").html(result);
-                                    $("#exampleModal").modal("show");
-                                }
-                            });
-                        }
-                    },
                     toolbar: {
                         show: true
                     }
@@ -202,8 +235,6 @@
 
             var chart = new ApexCharts(element, options);
             chart.render();
-
-
         });
     </script>
 }

@@ -24,6 +24,8 @@ namespace InspireHubWebApp.Controllers
             model.UnpaidAmount = _context.Students.Where(t => t.IsDeleted == false && t.IsPaid != true).Sum(x => x.Price);
             model.Invoices = _context.Invoices.Where(t => t.IsDeleted == false).Count();
 
+            model.TrainingsList = _context.Training.Where(t => t.IsDeleted == false).ToList();
+
             return View(model);
         }
 
