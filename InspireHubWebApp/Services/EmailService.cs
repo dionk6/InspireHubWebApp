@@ -47,7 +47,7 @@ namespace InspireHubWebApp.Services
             return true;
         }
 
-        public async Task<bool> SendMessageAsync(string emails, string msg, IFormFile attach)
+        public async Task<bool> SendMessageAsync(string subject, string emails, string msg, IFormFile attach)
         {
             MimeMessage message = new MimeMessage();
 
@@ -65,7 +65,7 @@ namespace InspireHubWebApp.Services
 
             message.ReplyTo.Add(MailboxAddress.Parse("hello@inspirehub.info"));
 
-            message.Subject = "Inspire Hub - Message";
+            message.Subject = subject;
             //message.HtmlBody = contact.Message;
 
             /*message.Body = new TextPart("html")

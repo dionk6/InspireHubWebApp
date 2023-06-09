@@ -31,9 +31,9 @@ namespace InspireHubWebApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SendMessage(string emails, string message, IFormFile file)
+        public async Task<IActionResult> SendMessage(string subject, string emails, string message, IFormFile file)
         {
-            await _emailService.SendMessageAsync(emails,message,file);
+            await _emailService.SendMessageAsync(subject,emails,message,file);
             return RedirectToAction("Index");
         }
 
