@@ -94,7 +94,7 @@ namespace InspireHubWebApp.Controllers
             var model = _context.Invoices.Find(id);
             var students = _context.Students
                             .Include(t => t.Invoice)
-                            .Where(t => t.IsDeleted == false && t.Invoice.Count() == 0)
+                            .Where(t => t.IsDeleted == false)
                             .OrderByDescending(t => t.CreateDate)
                             .Select(t => new SelectDto
                             {
