@@ -1,7 +1,7 @@
 ﻿@using InspireHubWebApp.DTOs
 @model List<TrainingView>
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Kryefaqja";
 }
 
 <section id="top-section" class="top-section d-flex flex-column align-items-center">
@@ -21,9 +21,9 @@
     </section>
       <section id="training-section" class="training-section d-flex flex-column align-items-center">
         <div class="main-title">
-          <h1>Trainings</h1>
+          <h1>Trajnimet</h1>
           <p>
-            Below you can find and pick the trainings that suit you the best
+            Me poshte mund te gjeni dhe zgjedhni trajnimet qe ju pershtaten me shume
           </p>
         </div>
         <div class="cards-wrapper col-12">
@@ -33,7 +33,7 @@
               <div class="avatar-info col-12 col-md-5 p-0">
                 <img src="@("https://inspirehub.info/"+item.InstructorImage)" class="avatar-image" alt="@item.Instructor Photo" />
                 <div class="avatar-detail">
-                  <span>Instructor</span>
+                  <span>Instruktori</span>
                   <h4>@item.Instructor</h4>
                   <p>@item.InstructorPosition</p>
                   <ul>
@@ -130,11 +130,11 @@
                   </ul>
                   <div class="button-wrapper">
                     <button class="btn btn-primary d-inline d-md-none" data-bs-target="@("#modal"+item.Id)" data-bs-toggle="modal">
-                      Apply
+                      Apliko
                     </button>
                     <button class="btn btn-secondary d-inline d-md-none" data-bs-target="@("#modal"+item.Id)" data-bs-toggle="modal"
                       onclick="showContent('@("modal-body-"+item.Id)')">
-                      More
+                        Me shume
                     </button>
                   </div>
                 </div>
@@ -146,9 +146,9 @@
                   <li>@item.Hours</li>
                   <li>@item.Days</li>
                     @if(item.FinalPrice > 0){
-                        <li>Price: <del>@item.Price</del> <strong>@item.FinalPrice Euro</strong></li>
+                        <li>Cmimi: <del>@item.Price</del> <strong>@item.FinalPrice Euro</strong></li>
                     }else{
-                        <li>Price: <strong>@item.Price Euro</strong></li>
+                        <li>Cmimi: <strong>@item.Price Euro</strong></li>
                     }
                 </ul>
                 <div class="button-wrapper">
@@ -171,17 +171,17 @@
                           </div>
                           <div class="modal-header-box">
                               @if(item.FinalPrice > 0){
-                                <p>Price: <del>@item.Price</del> <strong>@item.FinalPrice Euro</strong></p>
+                                <p>Cmimi: <del>@item.Price</del> <strong>@item.FinalPrice Euro</strong></p>
                               }else{
-                                <p>Price: <strong>@item.Price Euro</strong></p>
+                                <p>Cmimi: <strong>@item.Price Euro</strong></p>
                               }
-                            <p>Application Deadline: <strong>@item.ApplicationDeadline</strong></p>
+                            <p>Data e fundit per aplikim: <strong>@item.ApplicationDeadline</strong></p>
                           </div>
                         </div>
                         <div class="modal-body d-none" id="@("modal-body-"+item.Id)">
                           <div class="modal-content-wrapper">
                             <div class="modal-content-header">
-                              <h3>Course Details</h3>
+                              <h3>Detajet e kursit</h3>
                             </div>
                             @foreach(var data in item.CourseDetails){
                                 <div class="modal-box">
@@ -195,11 +195,11 @@
                           <div class="modal-instructor-wrapper row">
                             <div class="col-12 col-md-4">
                               <div class="instructor-image">
-                                <img src="@("https://inspirehub.info/"+item.InstructorImage)" alt="@item.Instructor Photo" />
+                                <img src="@("https://inspirehub.info/"+item.InstructorImage)" alt="@item.Instructor Foto" />
                               </div>
                             </div>
                             <div class="instructor-details col-12 col-md-8">
-                              <span>Instructor</span>
+                              <span>Instruktori</span>
                               <h4>@item.Instructor</h4>
                               <p class="modal-instructor-role d-inline d-md-none">
                                 @item.InstructorPosition
@@ -309,7 +309,7 @@
                         </div>
                         <div class="modal-footer-button">
                           <button class="btn btn-secondary" type="button" onclick="showContent('@("modal-body-"+item.Id)')">
-                            More
+                            Me shume
                           </button>
                         </div>
                       </div>
@@ -317,11 +317,11 @@
                   </div>
 
                   <button class="btn btn-primary d-none d-md-inline" data-bs-target="@("#modal"+item.Id)" data-bs-toggle="modal">
-                    Apply
+                    Apliko
                   </button>
                   <button class="btn btn-secondary d-none d-md-inline" data-bs-target="@("#modal"+item.Id)" data-bs-toggle="modal"
                     onclick="showContent('@("modal-body-"+item.Id)')">
-                    More
+                    Me shume
                   </button>
                 </div>
               </div>

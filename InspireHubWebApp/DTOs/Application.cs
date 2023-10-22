@@ -8,13 +8,13 @@ namespace InspireHubWebApp.DTOs
         public int? TrainingId { get; set; }
         public string? CourseTitle { get; set; }
         public decimal? Price { get; set; }
-        [Required(ErrorMessage = "First Name is required")]
+        [Required(ErrorMessage = "Kerkohet Emri")]
         public string? FirstName { get; set; }
-        [Required(ErrorMessage = "Last Name is required")]
+        [Required(ErrorMessage = "Kerkohet Mbiemri")]
         public string? LastName { get; set; }
-        [Required(ErrorMessage = "Email is required")]
+        [Required(ErrorMessage = "Kerkohet email")]
         public string? Email { get; set; }
-        [Required(ErrorMessage = "Phone is required")]
+        [Required(ErrorMessage = "Kerkohet telefoni")]
         public string? Phone { get; set; }
         public string? Message { get; set; }
         [Required]

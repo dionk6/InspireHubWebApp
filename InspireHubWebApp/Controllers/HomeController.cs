@@ -5,6 +5,7 @@ using InspireHubWebApp.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace InspireHubWebApp.Controllers
 {
@@ -30,6 +31,8 @@ namespace InspireHubWebApp.Controllers
         {
             var contact = new Application();
 
+            var culture = new CultureInfo("sq-AL");
+
             var model = _context.Training
                             .AsNoTracking()
                             .Include(t => t.TrainingCourseDetails)
@@ -39,7 +42,7 @@ namespace InspireHubWebApp.Controllers
                             {
                                 Id = t.Id,
                                 Title = t.Title,
-                                Dates = t.StartDate.ToString("dd MMMM yyyy")+" - "+t.EndDate.ToString("dd MMMM yyyy"),
+                                Dates = t.StartDate.ToString("dd MMMM yyyy", culture) +" - "+t.EndDate.ToString("dd MMMM yyyy", culture),
                                 Hours = t.Hours,
                                 Days = t.Days,
                                 Price = Decimal.Round(t.Price),

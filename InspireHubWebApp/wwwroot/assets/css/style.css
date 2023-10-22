@@ -297,6 +297,10 @@ header.active .burgerMenu span:nth-child(3) {
     margin:0px;
 }
 
+.training-detail .first-paragraph {
+    text-transform: capitalize;
+}
+
 .image-wrapper {
     width: 100%;
     height: 639px;
