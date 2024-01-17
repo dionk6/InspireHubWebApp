@@ -42,7 +42,7 @@ namespace InspireHubWebApp.Controllers
                             {
                                 Id = t.Id,
                                 Title = t.Title,
-                                Dates = t.StartDate.ToString("dd MMMM yyyy", culture) +" - "+t.EndDate.ToString("dd MMMM yyyy", culture),
+                                Dates = (t.StartDate.ToString("dd MMMM yyyy", culture) +" - "+t.EndDate.ToString("dd MMMM yyyy", culture)).Replace("ë", "e"),
                                 Hours = t.Hours,
                                 Days = t.Days,
                                 Price = Decimal.Round(t.Price),
