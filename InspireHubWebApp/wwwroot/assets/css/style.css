@@ -3,30 +3,25 @@ html {
     overflow-x: hidden;
 }
 
-/*@font-face {
-    font-family: "Mont-black";
-    src: url("./../fonts/mont-black-webfont.woff2");
-}
-
 @font-face {
     font-family: "Mont-bold";
-    src: url("./../fonts/mont-bold-webfont.woff2");
+    src: url("./../fonts/Mont-Bold.woff2");
 }
 
 @font-face {
     font-family: "Mont-regular";
-    src: url("./../fonts/mont-regular-webfont.woff2");
+    src: url("./../fonts/Mont-Regular.woff2");
 }
 
 @font-face {
     font-family: "Mont-semibold";
-    src: url("./../fonts/mont-semibold-webfont.woff2");
+    src: url("./../fonts/Mont-SemiBold.woff2");
 }
 
 @font-face {
     font-family: "Mont-heavy";
-    src: url("./../fonts/mont-heavy-webfont.woff2");
-}*/
+    src: url("./../fonts/Mont-Heavy.woff2");
+}
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
@@ -38,14 +33,14 @@ body {
     font-family: "Roboto", sans-serif;
 }
 
-/*h1,
+h1,
 h2 {
     font-family: "Mont-heavy";
 }
 
 strong {
     font-family: "Mont-bold";
-}*/
+}
 
 /* header ------ */
 .top-nav {
@@ -104,7 +99,7 @@ header .headerWrapper {
 }
 
 .alert-box .alert-content p {
-    /*font-family: "Mont-bold";*/
+    font-family: "Mont-bold";
     font-size: 18px;
     line-height: 23px;
 }
@@ -200,7 +195,7 @@ header .headerWrapper ul li:last-child a:first-child {
 }
 
 header .headerWrapper ul li a {
-    /*font-family: "Mont-semibold";*/
+    font-family: "Mont-semibold";
     text-decoration: none;
     font-style: normal;
     font-weight: 600;
@@ -358,11 +353,11 @@ header.active .burgerMenu span:nth-child(3) {
     font-size: 18px;
     line-height: 24px;
     color: #8452ff;
-    /*font-family: "Mont-bold";*/
+    font-family: "Mont-bold";
 }
 
 .avatar-detail h4 {
-    /*font-family: "Mont-semibold";*/
+    font-family: "Mont-semibold";
     font-style: normal;
     font-weight: 700;
     font-size: 24px;
@@ -436,7 +431,7 @@ header.active .burgerMenu span:nth-child(3) {
         width: fit-content;
         padding: 10px 16px;
         margin-right: 35px;
-        /*font-family: "Mont-bold";*/
+        font-family: "Mont-bold";
     }
 
     .training-detail ul {
@@ -516,7 +511,7 @@ header.active .burgerMenu span:nth-child(3) {
         }
 
         .contact-info ul li a {
-            /*font-family: "Mont-semibold";*/
+            font-family: "Mont-semibold";
             color: #021255;
             font-weight: 700;
             font-size: 18px;
@@ -581,7 +576,7 @@ textarea {
     }
 
     .modal-header .first-paragraph {
-        /*font-family: "Mont-bold";*/
+        font-family: "Mont-bold";
         font-style: normal;
         font-weight: 800;
         color: #021255;
@@ -631,7 +626,7 @@ textarea {
         font-weight: 800;
         font-size: clamp(1.125rem, 1.0105rem + 0.5236vw, 1.5rem);
         line-height: 32px;
-        /*font-family: "Mont-bold";*/
+        font-family: "Mont-bold";
     }
 
     .modal-body .modal-content-wrapper .modal-box {
@@ -647,7 +642,7 @@ textarea {
             background-color: #e6defa;
             padding: 8px 10px;
             border-radius: 8px;
-            /*font-family: "Mont-semibold";*/
+            font-family: "Mont-semibold";
             font-size: clamp(1.0625rem, 0.9289rem + 0.6108vw, 1.5rem);
         }
 
@@ -688,7 +683,7 @@ textarea {
 }
 
     .modal-instructor-wrapper .instructor-details span {
-        /*font-family: "Mont-bold";*/
+        font-family: "Mont-bold";
         font-style: normal;
         font-weight: 800;
         font-size: 18px;
@@ -697,7 +692,7 @@ textarea {
     }
 
     .modal-instructor-wrapper .instructor-details h4 {
-        /*font-family: "Mont-semibold";*/
+        font-family: "Mont-semibold";
         font-style: normal;
         font-weight: 800;
         font-size: 24px;
@@ -940,7 +935,7 @@ footer {
             font-size: 42px;
             line-height: 51px;
             color: #fff;
-            /*font-family: "Mont-heavy";*/
+            font-family: "Mont-heavy";
         }
 
     .image-wrapper {
