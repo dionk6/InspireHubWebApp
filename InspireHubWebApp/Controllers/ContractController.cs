@@ -4,6 +4,8 @@ using InspireHubWebApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PuppeteerSharp;
+using PuppeteerSharp.Media;
 
 namespace InspireHubWebApp.Controllers
 {
@@ -86,20 +88,10 @@ namespace InspireHubWebApp.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult PrintContract(int id)
+        public async Task<IActionResult> PrintContract(int id)
         {
             var model = _context.Contracts.Find(id);
             var fileName = "Kontrate e Sherbimit Inspire Hub - " + model.FirstName + " " + model.LastName;
-            var globalSettings = new GlobalSettings
-            {
-                ColorMode = ColorMode.Color,
-                Orientation = Orientation.Portrait,
-                PaperSize = PaperKind.A4,
-                Margins = new MarginSettings { Top = 30, Bottom = 35 },
-                DocumentTitle = fileName,
-                //Out = @"D:\PDFCreator\Employee_Report.pdf" // USE THIS PROPERTY TO SAVE PDF TO A PROVIDED LOCATION
-            };
-
 
             var path = Path.Combine(Directory.GetCurrentDirectory(), "ReportsViews", "ContractView.html");
             string Body = System.IO.File.ReadAllText(path);
@@ -112,35 +104,31 @@ namespace InspireHubWebApp.Controllers
             Body = Body.Replace("{{startDate}}", model.StartDate != null ? model.StartDate : "_________");
             Body = Body.Replace("{{endDate}}", model.EndDate != null ? model.EndDate : "_________");
 
-            var objectSettings = new ObjectSettings
+            var browserFetcher = new BrowserFetcher();
+            await browserFetcher.DownloadAsync();
+            var browser = await Puppeteer.LaunchAsync(new LaunchOptions
             {
-                PagesCount = true,
-                /*HeaderSettings = new HeaderSettings
-                {
-                    Spacing = 2,
-                    
-                },*/
-                HtmlContent = Body,
-                //WebSettings = { DefaultEncoding = "utf-8", UserStyleSheet = Path.Combine(Directory.GetCurrentDirectory(),"ReportsViews", "assets", "styles.css") },
-                //FooterSettings = { FontName = "Arial", FontSize = 9, Line = true, Center = "Generated on "+DateTime.Now.ToString("dd.MM.yyyy") }
-            };
+                Headless = true,
+                Args = new[] { "--no-sandbox" }
+            });
+            var page = await browser.NewPageAsync();
+            await page.SetContentAsync(Body);
 
-            var pdf = new HtmlToPdfDocument()
+            var pdfBytes = await page.PdfDataAsync(new PdfOptions
             {
-                GlobalSettings = globalSettings,
-                Objects = { objectSettings }
-            };
-            
-            var file = _converter.Convert(pdf);
-           
-            /*var fileName = "Projects Report.pdf";
-            var stream = new MemoryStream(file);
-            string mimeType = "application/pdf";
-            return new FileStreamResult(stream, mimeType)
-            {
-                FileDownloadName = fileName
-            };*/
-            return File(file, "application/pdf");
+                Format = PaperFormat.A4,
+                DisplayHeaderFooter = false,
+                PrintBackground = true,
+                MarginOptions = new MarginOptions
+                {
+                    Top = "30px",
+                    Right = "0px",
+                    Bottom = "35px",
+                    Left = "0px"
+                },
+            });
+
+            return File(pdfBytes, "application/pdf");
         }
 
     }

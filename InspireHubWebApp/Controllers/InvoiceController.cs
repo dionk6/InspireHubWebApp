@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using PuppeteerSharp.Media;
+using PuppeteerSharp;
 
 namespace InspireHubWebApp.Controllers
 {
@@ -129,7 +131,7 @@ namespace InspireHubWebApp.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult PrintInvoice(int id)
+        /*public IActionResult PrintInvoice(int id)
         {
             var invoice = _context.Invoices
                         .Include(t => t.Student)
@@ -175,14 +177,61 @@ namespace InspireHubWebApp.Controllers
 
             var file = _converter.Convert(pdf);
 
-            /*var fileName = "Projects Report.pdf";
+            *//*var fileName = "Projects Report.pdf";
             var stream = new MemoryStream(file);
             string mimeType = "application/pdf";
             return new FileStreamResult(stream, mimeType)
             {
                 FileDownloadName = fileName
-            };*/
+            };*//*
             return File(file, "application/pdf");
+        }*/
+
+        public async Task<IActionResult> PrintInvoice(int id)
+        {
+            var invoice = _context.Invoices
+                        .Include(t => t.Student)
+                        .FirstOrDefault(t => t.Id == id);
+
+            var fileName = "Fatura Inspire Hub - " + invoice.Student.FirstName + " " + invoice.Student.LastName;
+
+
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "ReportsViews", "InvoiceView.html");
+            string Body = System.IO.File.ReadAllText(path);
+
+            Body = Body.Replace("{{invoiceDate}}", invoice.InvoiceDate);
+            Body = Body.Replace("{{invoiceNo}}", invoice.InvoiceNo + "/" + invoice.Year);
+            Body = Body.Replace("{{studentName}}", invoice.Student.FirstName + " " + invoice.Student.LastName);
+            Body = Body.Replace("{{studentAddress}}", invoice.StudentAddress);
+            Body = Body.Replace("{{description}}", invoice.Description);
+            Body = Body.Replace("{{month}}", invoice.Month);
+            Body = Body.Replace("{{price}}", invoice.Price);
+
+            var browserFetcher = new BrowserFetcher();
+            await browserFetcher.DownloadAsync();
+            var browser = await Puppeteer.LaunchAsync(new LaunchOptions
+            {
+                Headless = true,
+                Args = new[] { "--no-sandbox" }
+            });
+            var page = await browser.NewPageAsync();
+            await page.SetContentAsync(Body);
+
+            var pdfBytes = await page.PdfDataAsync(new PdfOptions
+            {
+                Format = PaperFormat.A4,
+                DisplayHeaderFooter = false,
+                PrintBackground = true,
+                MarginOptions = new MarginOptions
+                {
+                    Top = "5px",
+                    Right = "30px",
+                    Bottom = "5px",
+                    Left = "30px"
+                },
+            });
+
+            return File(pdfBytes, "application/pdf");
         }
     }
 }
